@@ -1,0 +1,17 @@
+:root{
+--bg: #000000;
+--text: #FFFFFF;
+--text-2: #D3D3D3;
+--accent: #1E90FF;
+--accent-2: #39FF14; 
+--card: #0f0f0f; 
+--border: #1a1a1a;
+}
+
+html,body{height:100%;}
+body{
+background-color: var(--bg);
+color: var(--text);
+font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+}
+
