@@ -1,17 +1,163 @@
-:root{
---bg: #000000;
---text: #FFFFFF;
---text-2: #D3D3D3;
---accent: #1E90FF;
---accent-2: #39FF14; 
---card: #0f0f0f; 
---border: #1a1a1a;
+/* ===== Fuentes =====
+Roboto (texto) + Orbitron (títulos) */
+
+:root {
+	/* Paleta definida en documento */
+	--bg: #000000; /* fondo principal */
+	--text: #FFFFFF; /* texto principal */
+	--text-2: #D3D3D3; /* texto secundario */
+	--accent: #1E90FF; /* azul eléctrico */
+	--accent-2: #39FF14; /* verde neón */
+	--card: #0f0f0f; /* apoyo */
+	--border: #1a1a1a;
 }
 
-html,body{height:100%;}
-body{
-background-color: var(--bg);
-color: var(--text);
-font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+
+
+html,
+body {
+	height: 100%;
+}
+body {
+	background-color: var(--bg);
+	color: var(--text);
+	font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
 }
 
+
+
+/* Tipografías */
+.brand-title,
+.section-title,
+.hero-title {
+	font-family: 'Orbitron', sans-serif;
+}
+.hero-title span {
+	color: var(--accent-2);
+} /* acento neon */
+.text-secondary {
+	color: var(--text-2) !important;
+}
+
+
+
+/* Navbar */
+.lug-header {
+	background: rgba(0, 0, 0, .6);
+	backdrop-filter: blur(6px);
+}
+.navbar .nav-link {
+	color: var(--text-2);
+}
+.navbar .nav-link:hover {
+	color: var(--text);
+}
+
+
+
+/* Botones */
+.btn-accent {
+	background: var(--accent);
+	color: #000;
+	border: 0;
+}
+.btn-accent:hover {
+	filter: brightness(1.1);
+}
+.btn-outline-accent {
+	border: 1px solid var(--accent);
+	color: var(--accent);
+	background: transparent;
+}
+.btn-outline-accent:hover {
+	background: var(--accent);
+	color: #000;
+}
+
+
+
+/* Cards base */
+.card {
+	background: var(--card);
+	border: 1px solid var(--border);
+	color: var(--text);
+}
+.card-category h3 {
+	font-family: 'Orbitron', sans-serif;
+	font-size: 1.1rem;
+	margin: 0;
+}
+.card-blog .card-img-top {
+	aspect-ratio: 16/9;
+	object-fit: cover;
+}
+
+
+
+/* Hero */
+.hero-title {
+	font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+
+
+/* Precios */
+.price {
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: var(--accent);
+}
+
+
+
+/* Footer */
+.lug-footer {
+	border-top: 1px solid var(--border);
+}
+
+
+
+/* Formulario base */
+.lug-form .form-control,
+.lug-form .form-select {
+	background: #0c0c0c;
+	color: var(--text);
+	border: 1px solid var(--border);
+}
+.lug-form .form-control:focus,
+.lug-form .form-select:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 .2rem rgba(30, 144, 255, .15);
+}
+.lug-form .invalid-feedback {
+	display: block;
+	color: #ff6b6b;
+}
+
+
+
+/* Carrito flotante */
+.cart-floating {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	width: min(360px, 92vw);
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: .75rem;
+	padding: .75rem;
+	z-index: 1080;
+}
+.cart-header {
+	border-bottom: 1px solid var(--border);
+	padding-bottom: .5rem;
+	margin-bottom: .5rem;
+}
+.cart-body {
+	max-height: 40vh;
+	overflow: auto;
+}
+.section-title {
+	font-size: clamp(1.4rem, 2.6vw, 2rem);
+	margin-bottom: .75rem;
+}
