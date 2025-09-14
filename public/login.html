@@ -12,7 +12,7 @@
 		<div id="app-header"></div>
 		<main class="container py-4">
 			<h1 class="section-title">Ingresar</h1>
-			<form class="lug-form" id="formLogin" novalidate>
+			   <form class="lug-form bg-dark p-4 rounded-3 shadow mx-auto" style="max-width:500px;" id="formLogin" novalidate>
 				<div class="mb-3">
 					<label class="form-label">Correo</label>
 					<input type="email" class="form-control" id="loginCorreo" maxlength="100" required />
@@ -21,15 +21,17 @@
 					<label class="form-label">Contraseña</label>
 					<input type="password" class="form-control" id="loginPass" minlength="4" maxlength="10" required />
 				</div>
-				<button class="btn btn-accent" type="submit">Entrar</button>
-				<a class="btn btn-outline-accent mt-2" href="registro.html">¿No tienes cuenta? Regístrate</a>
+				   <div class="d-flex gap-2 mt-3">
+					   <button class="btn btn-accent flex-fill" type="submit">Entrar</button>
+					   <a class="btn btn-outline-accent flex-fill" href="registro.html">¿No tienes cuenta? Regístrate</a>
+				   </div>
 			</form>
 		</main>
 		<div id="app-footer"></div>
 		<script src="assets/js/vendor/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="assets/js/app/partials-loader.js"></script>
 	<script src="assets/js/app/ui.js"></script>
+	<script src="assets/js/app/partials-loader.js"></script>
 	<script src="assets/js/app/validators/auth-validator.js"></script>
 	<script src="assets/js/app/auth.js"></script>
 	</body>

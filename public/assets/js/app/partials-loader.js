@@ -4,6 +4,9 @@ function includePartial(id, url) {
         .then(res => res.text())
         .then(html => {
             document.getElementById(id).innerHTML = html;
+            if (id === 'app-header' && window.initNavbarUI) {
+                window.initNavbarUI();
+            }
         });
 }
 
