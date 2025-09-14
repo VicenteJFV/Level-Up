@@ -1,5 +1,5 @@
 function validDomain(email) {
-	return /@(?:duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(email);
+	return /@(?:duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i.test(email);
 }
 
 document.getElementById('formLogin')?.addEventListener('submit', (e) => {
@@ -15,8 +15,14 @@ document.getElementById('formLogin')?.addEventListener('submit', (e) => {
 		return;
 	}
 
+	// Validar usuario y contraseña
+	let users = JSON.parse(localStorage.getItem('lug_users') || '{}');
+	if (!users[email] || users[email].pass !== pass) {
+		alert('Correo o contraseña incorrectos');
+		return;
+	}
 	// ✅ Crear sesión simulada y redirigir
-	const user = login(email, 'cliente'); // puedes cambiar el rol según necesidad
+	const user = login(email, users[email].role || 'cliente');
 	alert('Bienvenido, ' + user.email);
 	window.location.href = 'index.html';
 });
