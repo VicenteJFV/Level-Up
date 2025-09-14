@@ -19,13 +19,13 @@ const BLOGS = [
       "Los mejores juegos de mesa para compartir y divertirse en casa con la familia y los amigos.",
     imagen: "assets/img/blog/b2.jpg",
     contenido:
-      "<p style='text-align: justify;'>Los juegos de mesa son una excelente forma de reunirse y compartir en familia. Aquí te dejamos una selección con distintas opciones, ideales para grandes y chicos, que harán que cada tarde sea más entretenida 🎲.</p> \
-    <p style='text-align: justify;'><strong>Monopoly</strong>: un clásico infaltable que pone a prueba tu habilidad para negociar y administrar dinero. Es perfecto para pasar horas en familia entre risas, estrategias y, a veces, discusiones divertidas 💸.</p> \
-    <p style='text-align: justify;'><strong>Uno</strong>: simple, rápido y dinámico. Este juego de cartas es ideal para todas las edades y siempre garantiza emoción, sobre todo cuando alguien se queda con una sola carta y grita ¡UNO! 🃏.</p> \
-    <p style='text-align: justify;'><strong>Catan</strong>: una opción más moderna en la que deberás construir pueblos, rutas y comerciar recursos. Es una excelente manera de aprender a planificar y pensar estratégicamente, sin perder la diversión.</p> \
-    <p style='text-align: justify;'><strong>Dixit</strong>: un juego creativo donde las ilustraciones son las protagonistas. Perfecto para estimular la imaginación y disfrutar de historias únicas en cada partida ✨.</p> \
-    <p style='text-align: justify;'><strong>Jenga</strong>: sencillo y emocionante. Solo necesitas buen pulso y concentración para evitar que la torre se derrumbe. Es un favorito en reuniones familiares porque todos pueden participar fácilmente.</p> \
-    <p style='text-align: justify;'>Con estas opciones tienes variedad para elegir según el ánimo del momento: estrategia, azar, creatividad o destreza. Lo importante es disfrutar del tiempo juntos y crear recuerdos inolvidables en familia 🙌.</p>",
+      "<p style='text-align: justify;'>Los juegos de mesa son una excelente forma de reunirse y compartir en familia. Aquí te dejamos un ranking con 5 títulos ideales para disfrutar juntos 🎲.</p> \
+    <p style='text-align: justify;'><strong>Top 5 – Jenga</strong>: sencillo y emocionante. Solo necesitas buen pulso y concentración para evitar que la torre se derrumbe. Es un favorito porque todos pueden participar fácilmente.</p> \
+    <p style='text-align: justify;'><strong>Top 4 – Dixit</strong>: un juego creativo donde las ilustraciones son las protagonistas. Perfecto para estimular la imaginación y disfrutar de historias únicas en cada partida ✨.</p> \
+    <p style='text-align: justify;'><strong>Top 3 – Catan</strong>: una opción moderna en la que deberás construir pueblos, rutas y comerciar recursos. Una excelente manera de aprender a planificar y pensar estratégicamente.</p> \
+    <p style='text-align: justify;'><strong>Top 2 – Uno</strong>: simple, rápido y dinámico. Este juego de cartas es ideal para todas las edades y siempre garantiza emoción, sobre todo cuando alguien se queda con una sola carta y grita ¡UNO! 🃏.</p> \
+    <p style='text-align: justify;'><strong>Top 1 – Monopoly</strong>: un clásico infaltable que pone a prueba tu habilidad para negociar y administrar dinero. Perfecto para pasar horas en familia entre risas, estrategias y, a veces, discusiones divertidas 💸.</p> \
+    <p style='text-align: justify;'>Con estas opciones tienes variedad para elegir según el ánimo del momento: estrategia, azar, creatividad o destreza. Lo importante es disfrutar del tiempo juntos y crear recuerdos inolvidables en familia 🤗.</p>",
   },
   {
     id: "b3",
@@ -34,13 +34,13 @@ const BLOGS = [
       "Encuentra algunos consejos para escoger los mejores auriculares de la escena gamer en el 2025.",
     imagen: "assets/img/blog/b3.jpg",
     contenido:
-      "<p style='text-align: justify;'>Elegir unos buenos <strong>auriculares gamer</strong> puede marcar la diferencia entre una experiencia de juego común y una realmente inmersiva. El 2025 trae modelos muy completos, pero aquí te dejamos los puntos más importantes que deberías considerar antes de comprar.</p> \
-    <p style='text-align: justify;'><strong>Calidad de sonido</strong>: busca auriculares con sonido envolvente 7.1 o al menos estéreo de alta fidelidad. Esto permite ubicar con precisión los pasos, disparos y efectos del juego, dándote una ventaja en partidas competitivas.</p> \
-    <p style='text-align: justify;'><strong>Micrófono</strong>: un buen micrófono es clave para la comunicación en equipo. Prefiere aquellos con cancelación de ruido, que filtran sonidos externos para que tu voz se escuche clara y sin interferencias.</p> \
-    <p style='text-align: justify;'><strong>Comodidad</strong>: recuerda que pasarás varias horas con ellos puestos. Busca modelos con almohadillas acolchadas, diadema ajustable y materiales transpirables para evitar molestias en sesiones largas.</p> \
-    <p style='text-align: justify;'><strong>Conectividad</strong>: hoy existen opciones inalámbricas con baja latencia que funcionan perfecto, aunque los modelos con cable siguen siendo más confiables y sin cortes. Considera qué se adapta mejor a tu estilo de juego.</p> \
-    <p style='text-align: justify;'><strong>Relación calidad-precio</strong>: no es necesario gastar una fortuna. En el rango medio (entre 60 y 120 USD) puedes encontrar auriculares con muy buen rendimiento, pensados tanto para principiantes como para jugadores avanzados.</p> \
-    <p style='text-align: justify;'>En resumen, los mejores auriculares gamer del 2025 son aquellos que combinan un sonido claro, comodidad y buen precio. Evalúa qué aspectos son más importantes para ti y elige el modelo que te acompañará en tus próximas partidas 🎧.</p>",
+      "<p style='text-align: justify;'>Elegir unos buenos <strong>auriculares gamer</strong> puede marcar la diferencia entre una experiencia de juego común y una realmente inmersiva. El 2025 trae modelos muy completos, pero aquí te dejamos los puntos más importantes a considerar:</p> \
+    <p style='text-align: justify;'>- <strong>Calidad de sonido</strong>: busca auriculares con sonido envolvente 7.1 o al menos estéreo de alta fidelidad, para ubicar con precisión pasos, disparos y efectos del juego.</p> \
+    <p style='text-align: justify;'>- <strong>Micrófono</strong>: prefiere aquellos con cancelación de ruido, que filtran sonidos externos para que tu voz se escuche clara y sin interferencias.</p> \
+    <p style='text-align: justify;'>- <strong>Comodidad</strong>: modelos con almohadillas acolchadas, diadema ajustable y materiales transpirables te permitirán jugar por horas sin molestias.</p> \
+    <p style='text-align: justify;'>- <strong>Conectividad</strong>: existen opciones inalámbricas con baja latencia que funcionan perfecto, aunque los modelos con cable siguen siendo más confiables.</p> \
+    <p style='text-align: justify;'>- <strong>Relación calidad-precio</strong>: en el rango medio (60 a 120 USD) puedes encontrar auriculares con muy buen rendimiento, ideales para principiantes y jugadores avanzados.</p> \
+    <p style='text-align: justify;'>En resumen, los mejores auriculares gamer del 2025 son aquellos que equilibran sonido claro, comodidad y buen precio. Evalúa qué aspectos son más importantes para ti y elige el modelo que mejor se adapte a tu estilo de juego 🎶🎧.</p>",
   },
 ];
 window.BLOGS = BLOGS;
