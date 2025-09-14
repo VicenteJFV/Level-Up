@@ -17,9 +17,33 @@
 			<p>Contenido completo del artículo…</p>
 		</article>
 		<div id="app-footer"></div>
-		<script src="assets/js/vendor/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="assets/js/app/partials-loader.js"></script>
-		<script src="assets/js/app/ui.js"></script>
+				 <script src="assets/js/vendor/jquery.min.js"></script>
+				 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+				 <script src="assets/js/app/blogs.js"></script>
+				 <script src="assets/js/app/partials-loader.js"></script>
+				 <script src="assets/js/app/ui.js"></script>
+				 <script>
+				 // Render dinámico del blog según el id de la URL
+				 document.addEventListener('DOMContentLoaded', function() {
+					 function getParam(name) {
+						 const url = new URL(window.location.href);
+						 return url.searchParams.get(name);
+					 }
+					 const id = getParam('id');
+					 const blog = (window.BLOGS || []).find(b => b.id === id);
+					 const root = document.getElementById('blog-detail');
+					 if (!root) return;
+					 if (!blog) {
+						 root.innerHTML = '<div class="alert alert-warning">No se encontró el blog solicitado.</div>';
+						 return;
+					 }
+					 root.innerHTML = `
+						 <h1 class="section-title">${blog.titulo}</h1>
+						 <p class="text-secondary">${blog.descripcion}</p>
+						 <img src="${blog.imagen}" class="img-fluid rounded-4 mb-3" alt="Imagen blog"/>
+						 ${blog.contenido}
+					 `;
+				 });
+				 </script>
 	</body>
 </html>

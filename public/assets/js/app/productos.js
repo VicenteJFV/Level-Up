@@ -1,8 +1,16 @@
 const PRODUCTOS = [
+	{ id: "M001", categoria: "Juegos de Mesa", nombre: "Catan", precio: 29990, img: "assets/img/productos/catan.jpg" },
+	{ id: "JM002", categoria: "Juegos de Mesa", nombre: "Carcassonne", precio: 24990, img: "assets/img/productos/carcassonne.jpg" },
+	{ id: "AC001", categoria: "Accesorios", nombre: "Controlador Inalámbrico Xbox Series X", precio: 59990, img: "assets/img/productos/xbox-controller.jpg" },
+	{ id: "AC002", categoria: "Accesorios", nombre: "Auriculares Gamer HyperX Cloud II", precio: 79990, img: "assets/img/productos/hyperx.jpg" },
 	{ id: "CO001", categoria: "Consolas", nombre: "PlayStation 5", precio: 549990, img: "assets/img/productos/ps5.jpg" },
-	{ id: "AC002", categoria: "Accesorios", nombre: "HyperX Cloud II", precio: 79990, img: "assets/img/productos/hyperx.jpg" },
-	{ id: "MS001", categoria: "Mouse", nombre: "Logitech G502 HERO", precio: 49990, img: "assets/img/productos/g502.jpg" }
+	{ id: "CG001", categoria: "Computadores Gamers", nombre: "PC Gamer ASUS ROG Strix", precio: 1299990, img: "assets/img/productos/asus-rog.jpg" },
+	{ id: "SG001", categoria: "Sillas Gamers", nombre: "Silla Gamer Secretlab Titan", precio: 349990, img: "assets/img/productos/secretlab-titan.jpg" },
+	{ id: "MS001", categoria: "Mouse", nombre: "Mouse Gamer Logitech G502 HERO", precio: 49990, img: "assets/img/productos/g502.jpg" },
+	{ id: "MP001", categoria: "Mousepad", nombre: "Mousepad Razer Goliathus Extended Chroma", precio: 29990, img: "assets/img/productos/razer-goliathus.jpg" },
+	{ id: "PP001", categoria: "Poleras Personalizadas", nombre: "Polera Gamer Personalizada 'Level-Up'", precio: 14990, img: "assets/img/productos/polera-levelup.jpg" }
 ];
+window.PRODUCTOS = PRODUCTOS;
 
 function money(n) {
 	return n.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' });

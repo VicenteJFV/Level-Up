@@ -9,21 +9,40 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
-    <div id="app-header"></div>
-        <div class="row g-4 align-items-start">
-            <div class="col-12 col-md-6">
-                <img id="det-img" class="img-fluid rounded-3 shadow" alt="Producto" />
+
+        <div id="app-header"></div>
+        <div class="container-fluid">
+            <div class="row g-4 align-items-start">
+                <div class="col-12 col-md-7 col-lg-8">
+                    <img id="det-img" class="img-fluid rounded-3 shadow mb-3" alt="Producto" />
+                    <h1 class="section-title" id="det-nombre"></h1>
+                    <p class="text-secondary" id="det-descripcion"></p>
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <span class="price" id="det-precio"></span>
+                        <button class="btn btn-accent" id="btnAdd">Añadir al carrito</button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 col-lg-4">
+                    <aside id="cartBox" class="card shadow-sm sticky-top d-none" style="top: 2rem;">
+                        <div class="card-header bg-accent text-white d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-cart"></i> Carrito</span>
+                            <button class="btn btn-sm btn-outline-light" id="btnClearCart">Vaciar</button>
+                        </div>
+                        <div class="card-body" id="cartItems"></div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            <span>Total:</span>
+                            <span class="fw-bold" id="cartTotal">$0</span>
+                        </div>
+                    </aside>
+                </div>
             </div>
-            <div class="col-12 col-md-6">
-                <h1 class="section-title" id="det-nombre"></h1>
-                <p class="text-secondary" id="det-descripcion"></p>
-                <div class="d-flex align-items-center gap-3">
-                    <span class="price" id="det-precio"></span>
-                    <button class="btn btn-accent" id="btnAdd">Añadir al carrito</button>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2 class="h4 mb-4">Productos relacionados</h2>
+                    <div class="row" id="relacionados"></div>
                 </div>
             </div>
         </div>
-    </main>
 
 
     <div id="app-footer"></div>
@@ -33,5 +52,9 @@
     <script src="assets/js/app/ui.js"></script>
     <script src="assets/js/app/auth.js"></script>
     <script src="assets/js/app/carrito.js"></script>
+</script>
+    <script src="assets/js/app/productos.js"></script>
+    <script src="assets/js/app/pago.js"></script>
+    <script src="assets/js/app/producto-detalle.js"></script>
 </body>
 </html>
