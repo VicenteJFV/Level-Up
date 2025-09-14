@@ -1,3 +1,14 @@
+
+// Usuarios predefinidos (solo si no existen)
+if (!localStorage.getItem('lug_users')) {
+	const defaultUsers = {
+		'admin@duoc.cl': { pass: 'admin123', role: 'admin' },
+		'vendedor@gmail.com': { pass: 'vendedor123', role: 'vendedor' },
+		'cliente@gmail.com': { pass: 'cliente123', role: 'cliente' }
+	};
+	localStorage.setItem('lug_users', JSON.stringify(defaultUsers));
+}
+
 function validarRUN(run) {
 	return /^[0-9kK]{7,9}$/.test(run);
 }

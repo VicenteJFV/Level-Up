@@ -52,8 +52,34 @@
           >
         </div>
       </form>
+      <div class="mt-4">
+        <div class="alert alert-info small">
+          <strong>Usuarios de prueba:</strong><br>
+          <ul class="mb-0">
+            <li><b>Admin:</b> admin@duoc.cl / <span class="text-monospace">admin123</span></li>
+            <li><b>Vendedor:</b> vendedor@gmail.com / <span class="text-monospace">vendedor123</span></li>
+            <li><b>Cliente:</b> cliente@gmail.com / <span class="text-monospace">cliente123</span></li>
+          </ul>
+          <button id="resetUsersBtn" class="btn btn-sm btn-outline-danger mt-2">Restablecer usuarios de prueba</button>
+          <span id="resetUsersMsg" class="ms-2 text-success"></span>
+        </div>
+      </div>
     </main>
     <div id="app-footer"></div>
+    <script>
+      document.getElementById('resetUsersBtn')?.addEventListener('click', function() {
+        localStorage.removeItem('lug_users');
+        // Regenerar usuarios predefinidos
+        const defaultUsers = {
+          'admin@duoc.cl': { pass: 'admin123', role: 'admin' },
+          'vendedor@gmail.com': { pass: 'vendedor123', role: 'vendedor' },
+          'cliente@gmail.com': { pass: 'cliente123', role: 'cliente' }
+        };
+        localStorage.setItem('lug_users', JSON.stringify(defaultUsers));
+        document.getElementById('resetUsersMsg').textContent = 'Usuarios restablecidos';
+        setTimeout(() => { document.getElementById('resetUsersMsg').textContent = ''; }, 2000);
+      });
+    </script>
     <aside class="cart-floating" id="cartFloating">
       <div
         class="cart-header d-flex justify-content-between align-items-center"
