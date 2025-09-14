@@ -54,10 +54,28 @@
       </form>
     </main>
     <div id="app-footer"></div>
+    <aside class="cart-floating" id="cartFloating">
+      <div
+        class="cart-header d-flex justify-content-between align-items-center"
+      >
+        <h2 class="h6 m-0">Carrito</h2>
+        <button class="btn btn-sm btn-outline-accent" id="btnClearCart">
+          Vaciar
+        </button>
+      </div>
+      <div class="cart-body" id="cartItems"></div>
+      <div
+        class="cart-footer d-flex justify-content-between align-items-center"
+      >
+        <strong>Total:</strong>
+        <span id="cartTotal">$0</span>
+      </div>
+    </aside>
     <script src="assets/js/vendor/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/app/partials-loader.js"></script>
     <script src="assets/js/app/ui.js"></script>
     <script src="assets/js/app/auth.js"></script>
+    <script src="assets/js/app/carrito.js"></script>
   </body>
 </html>
