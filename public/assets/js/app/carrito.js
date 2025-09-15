@@ -23,6 +23,7 @@ function addToCart(prod) {
       nombre: prod.nombre,
       precio: prod.precio,
       qty: 1,
+      img: prod.img, // <-- AGREGA ESTA LÍNEA para guardar la imagen
     });
   }
   saveCart(cart);
@@ -70,22 +71,25 @@ function renderCarrito() {
   if (!cartFloating) return;
 
   if (carrito.length === 0) {
-    cartFloating.style.display = "none";
-    cartFloating.innerHTML = ""; // Limpia el contenido si está vacío
+    cartFloating.classList.remove("visible");
+    setTimeout(() => {
+      cartFloating.innerHTML = ""; // Limpia el contenido después del fade-out
+    }, 400);
   } else {
-    cartFloating.style.display = "block";
-    const itemsHtml = carrito
-      .map(
-        (x) => `
+    cartFloating.innerHTML = `
+      <div class="cart-header d-flex justify-content-between align-items-center">
+        <h2 class="h6 m-0">Carrito</h2>
+        <button class="btn btn-sm btn-outline-accent" id="btnClearCart">Vaciar</button>
+      </div>
+      <div class="cart-body" id="cartItems">${carrito
+        .map(
+          (x) => `
         <div class="d-flex justify-content-between align-items-center py-1">
           <span class="small">${x.nombre} × ${x.qty}</span>
           <div>
             <span class="small me-2">${(x.precio * x.qty).toLocaleString(
               "es-CL",
-              {
-                style: "currency",
-                currency: "CLP",
-              }
+              { style: "currency", currency: "CLP" }
             )}</span>
             <button class="btn btn-sm btn-outline-accent" data-remove="${
               x.id
@@ -93,27 +97,25 @@ function renderCarrito() {
           </div>
         </div>
       `
-      )
-      .join("");
-    const total = carrito.reduce((a, b) => a + b.precio * b.qty, 0);
-
-    cartFloating.innerHTML = `
-      <div class="cart-header d-flex justify-content-between align-items-center">
-        <h2 class="h6 m-0">Carrito</h2>
-        <button class="btn btn-sm btn-outline-accent" id="btnClearCart">Vaciar</button>
-      </div>
-      <div class="cart-body" id="cartItems">${itemsHtml}</div>
+        )
+        .join("")}</div>
       <div class="cart-footer d-flex justify-content-between align-items-center">
         <strong>Total:</strong>
-        <span id="cartTotal">${total.toLocaleString("es-CL", {
-          style: "currency",
-          currency: "CLP",
-        })}</span>
+        <span id="cartTotal">${carrito
+          .reduce((a, b) => a + b.precio * b.qty, 0)
+          .toLocaleString("es-CL", {
+            style: "currency",
+            currency: "CLP",
+          })}</span>
       </div>
       <div class="d-grid mt-3">
         <button class="btn btn-accent" id="btnPagar">Pagar</button>
       </div>
     `;
+    // Aplica el fade-in
+    setTimeout(() => {
+      cartFloating.classList.add("visible");
+    }, 10);
   }
 }
 
@@ -124,22 +126,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("click", (e) => {
+  // Eliminar producto del carrito
   const rem = e.target.getAttribute("data-remove");
-  if (rem) removeFromCart(rem);
+  if (rem) {
+    removeFromCart(rem);
+    return;
+  }
+
+  // Vaciar carrito
   if (e.target.id === "btnClearCart") {
     saveCart([]);
     renderCart();
     renderCarrito();
+    return;
   }
-});
 
-document.addEventListener("click", function (e) {
-  if (e.target && e.target.id === "btnPagar") {
+  // Ir a compra.html al apretar "Pagar"
+  if (e.target.id === "btnPagar") {
     e.preventDefault();
-    // Aquí va tu lógica de confirmación de pago
-    // Por ejemplo:
-    if (confirm("¿Deseas confirmar tu pago?")) {
-      window.location.href = "pago.html";
-    }
+    window.location.href = "compra.html";
+    return;
   }
 });
