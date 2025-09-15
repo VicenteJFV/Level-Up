@@ -35,6 +35,7 @@
         <div class="row">
             <aside class="col-12 col-md-3 col-lg-2 admin-sidebar p-0">
                 <div class="d-flex flex-column p-3 gap-2">
+                    <a href="/public/index.html" class="btn btn-outline-accent mb-3 w-100" style="font-weight:bold"><span class="me-2">🏠</span>Ir a Home</a>
                     <a href="index.html" class="mb-3 text-decoration-none text-white h4 brand-title">Level-Up Admin</a>
                     <nav class="nav flex-column gap-2">
                         <div class="sidebar-section-title text-secondary small mb-1 mt-1">Dashboard</div>
@@ -93,11 +94,29 @@
                     <td>${correo}</td>
                     <td>${u.role || 'cliente'}</td>
                     <td>
-                        <button class="btn btn-sm btn-outline-accent" disabled>Editar</button>
-                        <button class="btn btn-sm btn-outline-danger" disabled>Eliminar</button>
+                        <button class="btn btn-sm btn-outline-accent btn-editar-usuario" data-correo="${correo}">Editar</button>
+                        <button class="btn btn-sm btn-outline-danger btn-eliminar-usuario" data-correo="${correo}">Eliminar</button>
                     </td>
                 </tr>
             `).join('');
+            // Asignar eventos a los botones
+            tbody.querySelectorAll('.btn-editar-usuario').forEach(btn => {
+                btn.onclick = function() {
+                    const correo = this.getAttribute('data-correo');
+                    window.location.href = `usuario-editar.html?correo=${encodeURIComponent(correo)}`;
+                };
+            });
+            tbody.querySelectorAll('.btn-eliminar-usuario').forEach(btn => {
+                btn.onclick = function() {
+                    const correo = this.getAttribute('data-correo');
+                    if (confirm('¿Seguro que deseas eliminar este usuario?')) {
+                        let users = JSON.parse(localStorage.getItem('lug_users') || '{}');
+                        delete users[correo];
+                        localStorage.setItem('lug_users', JSON.stringify(users));
+                        renderTablaUsuarios();
+                    }
+                };
+            });
         }
         document.addEventListener('DOMContentLoaded', renderTablaUsuarios);
         document.getElementById('btnAdminLogout').onclick = function() { logout(); };

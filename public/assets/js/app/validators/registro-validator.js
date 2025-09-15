@@ -22,6 +22,7 @@ document.getElementById('formRegistro')?.addEventListener('submit', (e) => {
 	const direccion = document.getElementById('direccion').value.trim();
 	const pass = document.getElementById('pass').value;
 	const role = document.getElementById('tipoUsuario').value || 'cliente';
+	const nacimiento = document.getElementById('nacimiento').value;
 	let ok = true;
 	ok = ok && validarRUN(run);
 	ok = ok && nombres && nombres.length <= 50;
@@ -33,6 +34,23 @@ document.getElementById('formRegistro')?.addEventListener('submit', (e) => {
 	const alertDiv = document.getElementById('registro-alert');
 	function showAlert(msg, type) {
 		alertDiv.innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">${msg}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`;
+	}
+
+	// Validar mayor de 18 años
+	if (!nacimiento) {
+		showAlert('Debes ingresar tu fecha de nacimiento', 'danger');
+		return;
+	}
+	const hoy = new Date();
+	const fechaNac = new Date(nacimiento);
+	let edad = hoy.getFullYear() - fechaNac.getFullYear();
+	const m = hoy.getMonth() - fechaNac.getMonth();
+	if (m < 0 || (m === 0 && hoy.getDate() < fechaNac.getDate())) {
+		edad--;
+	}
+	if (edad < 18) {
+		showAlert('Debes ser mayor de 18 años para registrarte', 'danger');
+		return;
 	}
 
 	if (!ok) {
