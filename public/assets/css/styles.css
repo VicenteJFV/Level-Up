@@ -1,11 +1,8 @@
-/* ===== Fuentes =====
-Roboto (texto) + Orbitron (títulos) */
-
+/* ===== Fuentes ===== */
 :root {
-  /* Paleta definida en documento */
   --bg: #0c0c0c;
   --text: #f8f9fa;
-  --text-2: #d3d3d3; /* texto secundario */
+  --text-2: #d3d3d3;
   --accent-1: #00ffe7;
   --accent-2: #00bfff;
   --card: #181818;
@@ -25,13 +22,16 @@ body {
 /* Tipografías */
 .brand-title,
 .section-title,
-.hero-title {
-  font-family: "Orbitron", sans-serif;
+.hero-title,
+h1,
+h2,
+h3 {
+  font-family: "Orbitron", sans-serif !important;
   color: var(--accent-2);
 }
 .hero-title span {
   color: var(--accent-2);
-} /* acento neon */
+}
 .text-secondary {
   color: #b0b0b0 !important;
 }
@@ -50,11 +50,15 @@ body {
 }
 
 /* Botones */
+.btn-accent,
+.btn-outline-accent,
+.btn-success {
+  font-family: "Orbitron", sans-serif;
+}
 .btn-accent {
   background: var(--accent-2);
   color: #181818;
   border: none;
-  font-family: "Orbitron", sans-serif;
 }
 .btn-accent:hover {
   background: var(--accent-1);
@@ -64,7 +68,6 @@ body {
   border: 1.5px solid var(--accent-2);
   color: var(--accent-2);
   background: transparent;
-  font-family: "Orbitron", sans-serif;
 }
 .btn-outline-accent:hover {
   background: var(--accent-2);
@@ -74,7 +77,6 @@ body {
   background: #28a745;
   color: #fff;
   border: none;
-  font-family: "Orbitron", sans-serif;
 }
 .btn-success:hover {
   background: #218838;
@@ -83,34 +85,37 @@ body {
 
 /* Cards base */
 .card {
-  background: var(--card);
-  color: var(--text);
+  background: var(--card) !important;
+  color: var(--text) !important;
   border: 1px solid var(--border);
+  border-radius: 1rem;
 }
 .card-category h3 {
-  font-family: "Orbitron", sans-serif;
   font-size: 1.1rem;
   margin: 0;
 }
+.card-category,
 .card-category a {
   text-decoration: none !important;
 }
-
-.card-category {
-  text-decoration: none !important;
-}
-.card-category:hover {
-  text-decoration: underline;
-}
+.card-category:hover,
 .card-category a:hover {
   text-decoration: underline;
 }
-.card-blog .card-img-top {
-  height: 320px; /* O el alto que prefieras */
-  object-fit: cover;
-  object-position: top; /* Esto alinea la imagen hacia arriba */
+.card-blog .card-img-top,
+.row.g-3 .card-img-top {
   width: 100%;
+  object-fit: cover;
   background: #222;
+}
+.card-blog .card-img-top {
+  height: 320px;
+  object-position: top;
+}
+.row.g-3 .card-img-top {
+  height: 220px;
+  object-position: center;
+  border-radius: 0.75rem 0.75rem 0 0;
 }
 .card a,
 .card-blog {
@@ -121,21 +126,11 @@ body {
   text-decoration: underline;
 }
 
-/* Imágenes de productos en la grilla de productos */
-.row.g-3 .card-img-top {
-  width: 100%;
-  height: 220px; /* Ajusta la altura según prefieras */
-  object-fit: cover;
-  object-position: center;
-  border-radius: 0.75rem 0.75rem 0 0;
-  background: #222;
-}
-
 /* Imagen principal en el detalle de producto */
 .row.g-4.align-items-start #det-img {
   width: 100%;
-  max-width: 420px; /* Ajusta el ancho máximo según prefieras */
-  height: 320px; /* Ajusta la altura según prefieras */
+  max-width: 420px;
+  height: 320px;
   object-fit: cover;
   object-position: center;
   display: block;
@@ -153,7 +148,7 @@ body {
 .price {
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--accent-2);
 }
 
 /* Footer */
@@ -163,14 +158,16 @@ body {
 
 /* Formulario base */
 .lug-form .form-control,
-.lug-form .form-select {
-  background: #0c0c0c;
-  color: var(--text);
-  border: 1px solid var(--border);
+.lug-form .form-select,
+.form-control,
+.input-group-text {
+  background: #0c0c0c !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
 }
 .lug-form .form-control:focus,
 .lug-form .form-select:focus {
-  border-color: var(--accent);
+  border-color: var(--accent-2);
   box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.15);
 }
 .lug-form .invalid-feedback {
@@ -179,11 +176,12 @@ body {
 }
 
 /* Carrito flotante */
-.cart-floating {
+.cart-floating,
+#cartFloating {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 470px; /* Aumenta el ancho aquí */
+  width: 470px;
   max-width: 95vw;
   z-index: 1050;
   background: #181818;
@@ -191,7 +189,14 @@ body {
   border-radius: 1rem;
   box-shadow: 0 0 24px #0008;
   padding: 1rem 1.25rem;
-  transition: opacity 0.2s;
+  transition: opacity 0.4s;
+  opacity: 0;
+  pointer-events: none;
+}
+.cart-floating.visible,
+#cartFloating.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 .cart-header {
   border-bottom: 1px solid var(--border);
@@ -202,226 +207,24 @@ body {
   max-height: 40vh;
   overflow: auto;
 }
-.section-title {
-  font-size: clamp(1.4rem, 2.6vw, 2rem);
-  margin-bottom: 0.75rem;
-}
 
-#relacionados-carrusel .carousel-control-prev,
-#relacionados-carrusel .carousel-control-next {
-  width: 3rem;
-  height: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(24, 24, 24, 0.6);
-  border-radius: 50%;
-  z-index: 2;
-}
-
-#relacionados-carrusel .carousel-control-prev {
-  left: -2.5rem;
-}
-
-#relacionados-carrusel .carousel-control-next {
-  right: -2.5rem;
-}
-
-#relacionados-carrusel .card-img-top {
-  height: 180px; /* O prueba con 200px si quieres aún más alto */
-  object-fit: cover;
-}
-
-.dropdown-menu {
-  z-index: 9999 !important;
-  position: absolute !important;
-}
-
-/* Animación fade-in rápida para el contenido principal */
+/* Animación fade-in para el contenido principal */
 .fade-in {
   opacity: 0;
   animation: fadeInAnim 0.4s ease-in forwards;
 }
-
 @keyframes fadeInAnim {
   to {
     opacity: 1;
   }
 }
 
-body,
-.card,
-.list-group-item,
-.form-control {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-  font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif !important;
-}
-
-.section-title,
-h1,
-h2,
-h3 {
-  font-family: "Orbitron", sans-serif !important;
-  color: var(--accent-2);
-}
-
-.card {
-  background: var(--card) !important;
-  color: var(--text) !important;
-}
-
-.btn-accent,
-.btn-outline-accent {
-  font-family: "Orbitron", sans-serif !important;
-}
-
-.form-control,
-.input-group-text {
-  background: #0c0c0c !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-}
-
-.table {
-  color: var(--text) !important;
-  background: var(--card) !important;
-}
-
-/* Cabecera gris oscuro */
-.table thead tr {
-  background: #23272b !important; /* Gris oscuro */
-  color: #fff !important;
-}
-
-/* Filas del cuerpo negras o casi negras */
-.table tbody tr {
-  background: #111214 !important; /* Negro o casi negro */
-  color: #fff !important;
-}
-
-/* Opcional: bordes más sutiles */
-.table th,
-.table td {
-  border-color: #333 !important;
-}
-
-/* Colores personalizados para la tabla del carrito de compra */
-main .table thead tr {
-  background: #23272b !important; /* Gris oscuro */
-  color: #fff !important;
-}
-main .table tbody tr {
-  background: #111214 !important; /* Negro/casi negro */
-  color: #fff !important;
-}
-main .table th,
-main .table td {
-  border-color: #333 !important;
-}
-
-/* --- Ajustes para compra.html y coherencia general --- */
-
-/* Main container y fade-in */
+/* Main container */
 main.container {
   max-width: 1200px;
 }
 
-/* Tarjetas */
-.card {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-}
-
-/* Títulos */
-.section-title,
-h1,
-h2,
-h3 {
-  font-family: "Orbitron", sans-serif !important;
-  color: var(--accent-2);
-}
-
 /* Tabla de carrito */
-.table {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border-radius: 1rem;
-  overflow: hidden;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-.table thead tr {
-  background: var(--border) !important; /* Igual que el borde de las tarjetas */
-  color: var(--accent-2) !important;
-}
-.table tbody tr {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border-bottom: 1px solid var(--border) !important;
-}
-.table th,
-.table td {
-  border: none !important;
-  vertical-align: middle;
-  padding: 1rem 0.75rem;
-}
-
-/* Opcional: efecto hover */
-.table tbody tr:hover {
-  background: #23272b !important;
-}
-
-/* List group en resumen */
-.list-group-item {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border-color: var(--border) !important;
-}
-
-/* Botones */
-.btn-accent {
-  background: var(--accent-2);
-  color: #181818;
-  border: none;
-  font-family: "Orbitron", sans-serif;
-}
-.btn-accent:hover {
-  background: var(--accent-1);
-  color: #181818;
-}
-.btn-outline-accent {
-  border: 1.5px solid var(--accent-2);
-  color: var(--accent-2);
-  background: transparent;
-  font-family: "Orbitron", sans-serif;
-}
-.btn-outline-accent:hover {
-  background: var(--accent-2);
-  color: #181818;
-}
-
-/* Inputs */
-.form-control,
-.input-group-text {
-  background: #0c0c0c !important;
-  color: var(--text) !important;
-  border: 1px solid var(--border) !important;
-}
-
-/* Fade-in animación */
-.fade-in {
-  opacity: 0;
-  animation: fadeInAnim 0.4s ease-in forwards;
-}
-@keyframes fadeInAnim {
-  to {
-    opacity: 1;
-  }
-}
-
-/* Forzar colores oscuros en la tabla del carrito, ignorando Bootstrap */
 .card .table,
 .card .table thead,
 .card .table tbody,
@@ -432,32 +235,28 @@ h3 {
   color: var(--text) !important;
   border: none !important;
 }
-
+.card .table {
+  border-radius: 1rem;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
 .card .table thead tr {
   background: var(--border) !important;
   color: var(--accent-2) !important;
 }
-
 .card .table tbody tr {
   background: var(--card) !important;
   color: var(--text) !important;
+  border-bottom: 1px solid var(--border) !important;
 }
-
 .card .table th,
 .card .table td {
-  border: none !important;
   vertical-align: middle;
   padding: 1rem 0.75rem;
 }
-
-/* Opcional: efecto hover */
 .card .table tbody tr:hover {
   background: #23272b !important;
-}
-
-.resumen-compra-card .section-title {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
 }
 
 /* Ajusta el ancho mínimo de la columna de cantidad en la tabla del carrito */
@@ -468,6 +267,18 @@ h3 {
   text-align: center;
 }
 
+/* List group en resumen */
+.list-group-item {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+/* Resumen de compra */
+.resumen-compra-card .section-title {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
 @media (min-width: 992px) {
   .resumen-compra-card {
     max-width: 340px;
@@ -477,15 +288,16 @@ h3 {
     margin-right: auto;
   }
 }
-
-/* Fade-in y fade-out para el carrito flotante */
-#cartFloating {
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
+.resumen-compra-card #discountCode {
+  max-width: 200px;
+  min-width: 120px;
+  width: 100%;
+  display: inline-block;
 }
-
-#cartFloating.visible {
-  opacity: 1;
-  pointer-events: auto;
+.resumen-compra-card #applyDiscount {
+  min-width: 90px;
+  margin-left: 0.5rem;
+}
+.resumen-compra-card .card-body {
+  padding: 1.5rem 1.2rem;
 }
