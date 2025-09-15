@@ -14,10 +14,7 @@
             min-height: 100vh;
             border-right: 1px solid #222;
         }
-        .admin-sidebar .nav-link.active {
-            color: var(--accent-2);
-            font-weight: bold;
-        }
+        /* Eliminado código fuera de <style> y línea <!doctype html> */
         .admin-sidebar .nav-link {
             color: #ccc;
         }
@@ -36,15 +33,18 @@
             <aside class="col-12 col-md-3 col-lg-2 admin-sidebar p-0">
                 <div class="d-flex flex-column p-3 gap-2">
                     <a href="index.html" class="mb-3 text-decoration-none text-white h4 brand-title">Level-Up Admin</a>
-                    <nav class="nav flex-column gap-1">
-                        <a class="nav-link" href="index.html">Dashboard</a>
-                        <a class="nav-link" href="productos-list.html">Productos</a>
-                        <a class="nav-link" href="usuarios-list.html">Usuarios</a>
-                        <a class="nav-link" href="pedidos-list.html">Pedidos</a>
-                        <a class="nav-link active" href="configuracion.html">Configuración</a>
-                        <button class="btn btn-outline-danger mt-3" id="btnAdminLogout">Cerrar Sesión</button>
+                    <nav class="nav flex-column gap-2">
+                        <div class="sidebar-section-title text-secondary small mb-1 mt-1">Dashboard</div>
+                        <a class="nav-link" href="index.html"><span class="me-2">🏠</span>Dashboard</a>
+                        <div class="sidebar-section-title text-secondary small mb-1 mt-3">GESTIÓN</div>
+                        <a class="nav-link" href="productos-list.html"><span class="me-2">📦</span>Productos</a>
+                        <a class="nav-link" href="usuarios-list.html"><span class="me-2">👥</span>Usuarios</a>
+                        <a class="nav-link" href="pedidos-list.html"><span class="me-2">🛒</span>Pedidos</a>
+                        <div class="sidebar-section-title text-secondary small mb-1 mt-3">CONFIGURACIÓN</div>
+                        <a class="nav-link active" href="configuracion.html"><span class="me-2">⚙️</span>Configuración</a>
+                        <hr class="my-3 border-secondary opacity-50" />
+                        <button class="btn btn-outline-danger w-100" id="btnAdminLogout"><span class="me-2">⎋</span>Cerrar Sesión</button>
                     </nav>
-                    <div class="mt-auto small text-secondary">Admin</div>
                 </div>
             </aside>
             <main class="col admin-content p-4">
