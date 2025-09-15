@@ -40,6 +40,9 @@
                         <a class="nav-link" href="index.html">Dashboard</a>
                         <a class="nav-link active" href="productos-list.html">Productos</a>
                         <a class="nav-link" href="usuarios-list.html">Usuarios</a>
+                        <a class="nav-link" href="pedidos-list.html">Pedidos</a>
+                        <a class="nav-link" href="configuracion.html">Configuración</a>
+                        <button class="btn btn-outline-danger mt-3" id="btnAdminLogout">Cerrar Sesión</button>
                     </nav>
                     <div class="mt-auto small text-secondary">Admin</div>
                 </div>
@@ -94,6 +97,7 @@
             `).join('');
         }
         document.addEventListener('DOMContentLoaded', renderTablaProductos);
+        document.getElementById('btnAdminLogout').onclick = function() { logout(); };
         </script>
 </body>
 </html>

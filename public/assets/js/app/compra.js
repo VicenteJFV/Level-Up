@@ -95,6 +95,31 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem(CART_KEY, JSON.stringify(carrito));
       renderCarrito();
     }
+
+    // Registrar compra en pedidos
+    if (e.target.id === "btnCheckout") {
+      e.preventDefault();
+      if (carrito.length === 0) {
+        alert("El carrito está vacío.");
+        return;
+      }
+      // Guardar pedido en localStorage.lug_pedidos
+      const pedidos = JSON.parse(localStorage.getItem('lug_pedidos') || '[]');
+      const total = carrito.reduce((a, b) => a + b.precio * (b.qty || 1), 0) + ENVIO_FIJO - descuento;
+      pedidos.push({
+        fecha: new Date().toISOString(),
+        items: carrito.map(p => ({ id: p.id, nombre: p.nombre, qty: p.qty || 1, precio: p.precio })),
+        total
+      });
+      localStorage.setItem('lug_pedidos', JSON.stringify(pedidos));
+      // Vaciar carrito y mostrar confirmación
+      carrito = [];
+      localStorage.setItem(CART_KEY, JSON.stringify(carrito));
+      descuento = 0;
+      renderCarrito();
+      alert("¡Compra realizada con éxito!");
+      window.location.href = "index.html";
+    }
   });
 
   // Lógica para aplicar el descuento

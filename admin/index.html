@@ -44,20 +44,208 @@
 			<aside class="col-12 col-md-3 col-lg-2 admin-sidebar p-0">
 				<div class="d-flex flex-column p-3 gap-2">
 					<a href="index.html" class="mb-3 text-decoration-none text-white h4 brand-title">Level-Up Admin</a>
-					<nav class="nav flex-column gap-1">
-						<a class="nav-link active" href="index.html">Dashboard</a>
-						<a class="nav-link" href="productos-list.html">Productos</a>
-						<a class="nav-link" href="usuarios-list.html">Usuarios</a>
-					</nav>
-					<div class="mt-auto small text-secondary">Admin</div>
+					   <nav class="nav flex-column gap-1">
+						   <a class="nav-link active" href="index.html">Dashboard</a>
+						   <a class="nav-link" href="productos-list.html">Productos</a>
+						   <a class="nav-link" href="usuarios-list.html">Usuarios</a>
+						   <a class="nav-link" href="pedidos-list.html">Pedidos</a>
+						   <a class="nav-link" href="configuracion.html">Configuración</a>
+						   <button class="btn btn-outline-danger mt-3" id="btnAdminLogout">Cerrar Sesión</button>
+					   </nav>
+					   <div class="mt-auto small text-secondary">Admin</div>
 				</div>
 			</aside>
 			<main class="col admin-content p-4">
-				<h1 class="section-title mb-4">¡Hola Administrador!</h1>
-				<div class="card bg-dark border-accent p-4 mb-4">
-					<p class="lead text-secondary">Bienvenido al panel de administración. Usa el menú lateral para gestionar productos y usuarios.</p>
+				<h1 class="section-title mb-4">Dashboard</h1>
+				<!-- Métricas principales -->
+				<div class="row g-4 mb-4" id="dashboard-metrics">
+					<!-- Tarjetas de métricas generadas por JS -->
+				</div>
+				<div class="row g-4">
+					<!-- Gráfico de ventas mensuales -->
+					<div class="col-lg-8">
+						<div class="card bg-dark border-accent p-4 h-100">
+							<h2 class="h5 section-title mb-3">Ventas Mensuales</h2>
+							<div class="p-2" style="height:260px;">
+								<canvas id="ventasChart" style="width:100%;height:220px;max-width:100%;display:block;"></canvas>
+							</div>
+						</div>
+					</div>
+					<!-- Productos populares -->
+					<div class="col-lg-4">
+						<div class="card bg-dark border-accent p-4 h-100">
+							<h2 class="h5 section-title mb-3">Productos Populares</h2>
+							<ul class="list-group list-group-flush" id="dashboard-populares">
+								<!-- Productos populares generados por JS -->
+							</ul>
+						</div>
+					</div>
 				</div>
 			</main>
 		</div>
 	</div>
+	<!-- Chart.js CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="../public/assets/js/app/auth.js"></script>
+	<script src="../public/assets/js/app/productos.js"></script>
+	<script>
+	requireRole(['admin']);
+	document.getElementById('btnAdminLogout').onclick = function() { logout(); };
+		// Datos dinámicos: ventas, pedidos y productos reales
+		function getPedidos() {
+			// Simulación: cada compra se guarda en localStorage.lug_pedidos como array
+			return JSON.parse(localStorage.getItem('lug_pedidos') || '[]');
+		}
+		function getUsuarios() {
+			// Usuarios guardados en localStorage.lug_users
+			const users = JSON.parse(localStorage.getItem('lug_users') || '{}');
+			return Object.keys(users).length;
+		}
+		function getVentasTotales() {
+			// Suma total de ventas de todos los pedidos
+			return getPedidos().reduce((sum, p) => sum + (p.total || 0), 0);
+		}
+		function getProductos() {
+			return window.PRODUCTOS ? window.PRODUCTOS.length : 0;
+		}
+		function getPopulares() {
+			// Top 5 productos más comprados (por cantidad)
+			const pedidos = getPedidos();
+			const counts = {};
+			pedidos.forEach(p => {
+				(p.items || []).forEach(item => {
+					counts[item.nombre] = (counts[item.nombre] || 0) + (item.qty || 1);
+				});
+			});
+			// Si no hay compras, usar los primeros 5 productos
+			if (Object.keys(counts).length === 0 && window.PRODUCTOS) {
+				return window.PRODUCTOS.slice(0,5).map((p,i) => ({ nombre: p.nombre, cantidad: 45-7*i }));
+			}
+			return Object.entries(counts)
+				.sort((a,b) => b[1]-a[1])
+				.slice(0,5)
+				.map(([nombre, cantidad]) => ({ nombre, cantidad }));
+		}
+
+		let dashboardData = {
+			ventas: getVentasTotales(),
+			pedidos: getPedidos().length,
+			usuarios: getUsuarios(),
+			productos: getProductos(),
+			populares: getPopulares()
+		};
+
+    function renderDashboardMetrics() {
+      const metrics = [
+        { label: 'Total Ventas', value: dashboardData.ventas.toLocaleString('es-CL', { style: 'currency', currency: 'CLP' }), icon: '💰', color: 'main-cta', extra: '+12%', extraClass: 'badge-success' },
+        { label: 'Total Pedidos', value: dashboardData.pedidos, icon: '🛒', color: '', extra: '+8%', extraClass: 'badge-success' },
+        { label: 'Total Usuarios', value: dashboardData.usuarios, icon: '👥', color: '', extra: '+5%', extraClass: 'badge-success' },
+        { label: 'Productos', value: dashboardData.productos, icon: '📦', color: '', extra: '+2', extraClass: 'badge-success' }
+      ];
+      document.getElementById('dashboard-metrics').innerHTML = metrics.map(m => `
+        <div class="col-6 col-md-3">
+          <div class="card bg-dark border-accent p-3 h-100 d-flex flex-column align-items-start justify-content-between">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span style="font-size:1.5rem;">${m.icon}</span>
+              <span class="text-secondary small">${m.label}</span>
+            </div>
+            <div class="d-flex align-items-end gap-2">
+              <span class="fs-4 fw-bold ${m.color}">${m.value}</span>
+              <span class="badge ${m.extraClass}">${m.extra}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderDashboardPopulares() {
+      const populares = dashboardData.populares;
+      document.getElementById('dashboard-populares').innerHTML = populares.map(p => `
+        <li class="list-group-item d-flex justify-content-between align-items-center bg-dark">
+          <span>${p.nombre}</span>
+          <span class="badge badge-success">${p.cantidad}</span>
+        </li>
+      `).join('');
+    }
+
+			// Gráfico de ventas mensuales
+			let ventasChart = null;
+			function getVentasPorMes() {
+				// Devuelve un array con el total de ventas por mes del año actual
+				const pedidos = getPedidos();
+				const meses = Array(12).fill(0);
+				const ahora = new Date();
+				pedidos.forEach(p => {
+					if (!p.fecha) return;
+					const d = new Date(p.fecha);
+					if (d.getFullYear() === ahora.getFullYear()) {
+						meses[d.getMonth()] += p.total || 0;
+					}
+				});
+				return meses;
+			}
+
+			function renderVentasChart() {
+				const ctx = document.getElementById('ventasChart').getContext('2d');
+				const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+				const data = getVentasPorMes();
+						if (ventasChart) ventasChart.destroy();
+						ventasChart = new Chart(ctx, {
+							type: 'bar',
+							data: {
+								labels: meses,
+								datasets: [{
+									label: 'Ventas CLP',
+									data: data,
+									backgroundColor: 'rgba(57,255,20,0.7)',
+									borderColor: '#39FF14',
+									borderWidth: 2,
+									borderRadius: 8,
+									maxBarThickness: 32
+								}]
+							},
+							options: {
+								layout: { padding: { left: 0, right: 0, top: 10, bottom: 0 } },
+								plugins: {
+									legend: { display: false },
+									tooltip: { enabled: true }
+								},
+								responsive: true,
+								maintainAspectRatio: false,
+								scales: {
+									x: {
+										grid: { color: '#23272b' },
+										ticks: { color: '#fff', font: { family: 'Orbitron' } }
+									},
+									y: {
+										beginAtZero: true,
+										min: 0,
+										grid: { color: '#23272b' },
+										ticks: { color: '#fff', font: { family: 'Roboto' } }
+									}
+								}
+							}
+						});
+			}
+
+			function updateDashboard() {
+				dashboardData.ventas = getVentasTotales();
+				dashboardData.pedidos = getPedidos().length;
+				dashboardData.usuarios = getUsuarios();
+				dashboardData.productos = getProductos();
+				dashboardData.populares = getPopulares();
+				renderDashboardMetrics();
+				renderDashboardPopulares();
+				renderVentasChart();
+			}
+
+		document.addEventListener('DOMContentLoaded', updateDashboard);
+
+		// Escuchar cambios en localStorage para actualizar dashboard en tiempo real
+		window.addEventListener('storage', function(e) {
+			if (["lug_pedidos","lug_users"].includes(e.key)) {
+				updateDashboard();
+			}
+		});
+    </script>
 </html>

@@ -1,10 +1,80 @@
+/* Botón principal destacado en verde neón */
+.btn-accent.main-cta {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border: none;
+  box-shadow: 0 0 12px #39FF1466;
+  font-size: 1.15em;
+}
+.btn-accent.main-cta:hover {
+  background: var(--accent-1) !important;
+  color: #181818 !important;
+  box-shadow: 0 0 18px #1E90FF99;
+}
+
+/* Hover de todos los botones acento: verde neón */
+.btn-accent:hover, .btn-outline-accent:hover {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border-color: var(--accent-2) !important;
+}
+
+/* Subrayado verde animado en títulos destacados */
+.section-title, .hero-title {
+  position: relative;
+  display: inline-block;
+}
+.section-title::after, .hero-title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-2), transparent);
+  border-radius: 2px;
+  margin: 0.3em auto 0 auto;
+  transition: width 0.3s;
+}
+.section-title:hover::after, .hero-title:hover::after {
+  width: 90%;
+}
+/* Badges y etiquetas de estado con verde neón */
+.badge-success, .badge-available, .badge-green {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  font-family: "Orbitron", sans-serif;
+  border-radius: 0.5em;
+  font-size: 0.95em;
+  padding: 0.35em 0.7em;
+}
+
+/* Links activos o destacados con verde neón */
+.nav-link.active, .nav-link.selected {
+  color: var(--accent-2) !important;
+  font-weight: bold;
+}
+
+/* Iconos de check o detalles de éxito */
+.icon-success, .icon-check {
+  color: var(--accent-2) !important;
+}
+
+/* Bordes inferiores o detalles de cards destacados */
+.card.border-accent {
+  border-bottom: 3px solid var(--accent-2) !important;
+}
+
+/* Separadores o líneas de progreso con verde neón */
+.progress-bar-success, .progress-bar-green {
+  background: var(--accent-2) !important;
+}
 /* ===== Fuentes ===== */
+
 :root {
-  --bg: #0c0c0c;
-  --text: #f8f9fa;
+  --bg: #000000;
+  --text: #ffffff;
   --text-2: #d3d3d3;
-  --accent-1: #00ffe7;
-  --accent-2: #00bfff;
+  --accent-1: #1E90FF; /* Azul Eléctrico */
+  --accent-2: #39FF14; /* Verde Neón */
   --card: #181818;
   --border: #23272b;
 }
@@ -20,6 +90,7 @@ body {
 }
 
 /* Tipografías */
+/* Encabezados Orbitron y color de acento azul eléctrico */
 .brand-title,
 .section-title,
 .hero-title,
@@ -27,13 +98,14 @@ h1,
 h2,
 h3 {
   font-family: "Orbitron", sans-serif !important;
-  color: var(--accent-2);
+  color: var(--accent-1);
 }
 .hero-title span {
-  color: var(--accent-2);
+  color: var(--accent-1);
 }
+/* Texto secundario gris claro */
 .text-secondary {
-  color: #b0b0b0 !important;
+  color: var(--text-2) !important;
 }
 
 /* Navbar */
@@ -41,46 +113,56 @@ h3 {
   background: var(--card);
   border-bottom: 1px solid var(--border);
 }
+
 .navbar .nav-link {
   color: var(--text);
   font-family: "Orbitron", sans-serif;
 }
 .navbar .nav-link:hover {
-  color: var(--accent-1);
+  color: var(--accent-2);
 }
 
 /* Botones */
+
 .btn-accent,
 .btn-outline-accent,
 .btn-success {
   font-family: "Orbitron", sans-serif;
 }
 .btn-accent {
-  background: var(--accent-2);
+  background: var(--accent-1);
   color: #181818;
   border: none;
 }
 .btn-accent:hover {
-  background: var(--accent-1);
-  color: #181818;
-}
-.btn-outline-accent {
-  border: 1.5px solid var(--accent-2);
-  color: var(--accent-2);
-  background: transparent;
-}
-.btn-outline-accent:hover {
   background: var(--accent-2);
   color: #181818;
 }
+.btn-outline-accent {
+  border: 1.5px solid var(--accent-1);
+  color: var(--accent-1);
+  background: transparent;
+}
+.btn-outline-accent:hover {
+  background: var(--accent-1);
+  color: #181818;
+}
+
 .btn-success {
-  background: #28a745;
-  color: #fff;
+  background: var(--accent-2) !important;
+  color: #181818 !important;
   border: none;
 }
 .btn-success:hover {
-  background: #218838;
-  color: #fff;
+  background: #1E90FF !important;
+  color: #181818 !important;
+}
+
+/* Alertas de éxito con verde neón */
+.alert-success {
+  background: var(--accent-2) !important;
+  color: #181818 !important;
+  border: 1.5px solid #39FF14 !important;
 }
 
 /* Cards base */
@@ -148,7 +230,7 @@ h3 {
 .price {
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--accent-2);
+  color: var(--accent-1);
 }
 
 /* Footer */
@@ -157,17 +239,18 @@ h3 {
 }
 
 /* Formulario base */
+
 .lug-form .form-control,
 .lug-form .form-select,
 .form-control,
 .input-group-text {
-  background: #0c0c0c !important;
+  background: #181818 !important;
   color: var(--text) !important;
   border: 1px solid var(--border) !important;
 }
 .lug-form .form-control:focus,
 .lug-form .form-select:focus {
-  border-color: var(--accent-2);
+  border-color: var(--accent-1);
   box-shadow: 0 0 0 0.2rem rgba(30, 144, 255, 0.15);
 }
 .lug-form .invalid-feedback {
