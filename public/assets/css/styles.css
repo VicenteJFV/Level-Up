@@ -17,29 +17,32 @@
   background: var(--accent-2) !important;
   color: #181818 !important;
   border: none;
-  box-shadow: 0 0 12px #39FF1466;
+  box-shadow: 0 0 12px #39ff1466;
   font-size: 1.15em;
 }
 .btn-accent.main-cta:hover {
   background: var(--accent-1) !important;
   color: #181818 !important;
-  box-shadow: 0 0 18px #1E90FF99;
+  box-shadow: 0 0 18px #1e90ff99;
 }
 
 /* Hover de todos los botones acento: verde neón */
-.btn-accent:hover, .btn-outline-accent:hover {
+.btn-accent:hover,
+.btn-outline-accent:hover {
   background: var(--accent-2) !important;
   color: #181818 !important;
   border-color: var(--accent-2) !important;
 }
 
 /* Subrayado verde animado en títulos destacados */
-.section-title, .hero-title {
+.section-title,
+.hero-title {
   position: relative;
   display: inline-block;
 }
-.section-title::after, .hero-title::after {
-  content: '';
+.section-title::after,
+.hero-title::after {
+  content: "";
   display: block;
   width: 60%;
   height: 4px;
@@ -48,11 +51,14 @@
   margin: 0.3em auto 0 auto;
   transition: width 0.3s;
 }
-.section-title:hover::after, .hero-title:hover::after {
+.section-title:hover::after,
+.hero-title:hover::after {
   width: 90%;
 }
 /* Badges y etiquetas de estado con verde neón */
-.badge-success, .badge-available, .badge-green {
+.badge-success,
+.badge-available,
+.badge-green {
   background: var(--accent-2) !important;
   color: #181818 !important;
   font-family: "Orbitron", sans-serif;
@@ -62,13 +68,15 @@
 }
 
 /* Links activos o destacados con verde neón */
-.nav-link.active, .nav-link.selected {
+.nav-link.active,
+.nav-link.selected {
   color: var(--accent-2) !important;
   font-weight: bold;
 }
 
 /* Iconos de check o detalles de éxito */
-.icon-success, .icon-check {
+.icon-success,
+.icon-check {
   color: var(--accent-2) !important;
 }
 
@@ -78,7 +86,8 @@
 }
 
 /* Separadores o líneas de progreso con verde neón */
-.progress-bar-success, .progress-bar-green {
+.progress-bar-success,
+.progress-bar-green {
   background: var(--accent-2) !important;
 }
 /* ===== Fuentes ===== */
@@ -87,8 +96,8 @@
   --bg: #000000;
   --text: #ffffff;
   --text-2: #d3d3d3;
-  --accent-1: #1E90FF; /* Azul Eléctrico */
-  --accent-2: #39FF14; /* Verde Neón */
+  --accent-1: #1e90ff; /* Azul Eléctrico */
+  --accent-2: #39ff14; /* Verde Neón */
   --card: #181818;
   --border: #23272b;
 }
@@ -168,7 +177,7 @@ h3 {
   border: none;
 }
 .btn-success:hover {
-  background: #1E90FF !important;
+  background: #1e90ff !important;
   color: #181818 !important;
 }
 
@@ -176,7 +185,7 @@ h3 {
 .alert-success {
   background: var(--accent-2) !important;
   color: #181818 !important;
-  border: 1.5px solid #39FF14 !important;
+  border: 1.5px solid #39ff14 !important;
 }
 
 /* Cards base */
@@ -397,4 +406,72 @@ main.container {
 }
 .resumen-compra-card .card-body {
   padding: 1.5rem 1.2rem;
+}
+
+/* Carrusel: cards alineadas en fila */
+#relacionados-carousel-inner .carousel-item {
+  display: none;
+}
+
+#relacionados-carousel-inner .carousel-item.active {
+  display: flex !important;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+}
+
+/* Cards de productos relacionados: tamaño fijo */
+#relacionados-carousel-inner .card {
+  width: 290px;
+  min-width: 290px;
+  max-width: 290px;
+  flex: 0 0 auto;
+  height: 420px; /* <-- Cambia aquí el alto */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imágenes de las cards: tamaño y proporción uniforme */
+#relacionados-carousel-inner .card-img-top {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background: #222;
+}
+
+/* Flechas del carrusel más afuera */
+#relacionados-carrusel .carousel-control-prev,
+#relacionados-carrusel .carousel-control-next {
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(24, 24, 24, 0.7);
+  border-radius: 50%;
+  z-index: 2;
+  /* Posición más afuera */
+  position: absolute;
+}
+
+#relacionados-carrusel .carousel-control-prev {
+  left: -56px; /* Más afuera a la izquierda */
+}
+#relacionados-carrusel .carousel-control-next {
+  right: -56px; /* Más afuera a la derecha */
+}
+
+/* Nombre del producto en card de relacionados: máximo 2 líneas con ellipsis */
+#relacionados-carousel-inner .card-body h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limita a 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  min-height: 2.4em; /* Espacio para 2 líneas */
+  max-height: 2.4em;
 }

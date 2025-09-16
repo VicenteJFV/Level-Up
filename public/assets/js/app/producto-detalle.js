@@ -53,28 +53,18 @@ function toggleCartBox() {
 }
 
 function renderRelacionados(productoActual) {
-  console.log("Producto actual:", productoActual);
-  console.log("Productos:", window.PRODUCTOS);
   if (!window.PRODUCTOS) return;
-  const relacionados = [];
-  const otros = [];
 
-  window.PRODUCTOS.forEach((p) => {
-    if (p.id === productoActual.id) return;
-    if (p.categoria === productoActual.categoria && relacionados.length < 3) {
-      relacionados.push(p);
-    } else if (otros.length < 5) {
-      otros.push(p);
-    }
-  });
+  // Toma todos los productos excepto el actual
+  const productosCarrusel = window.PRODUCTOS.filter(
+    (p) => p.id !== productoActual.id
+  );
 
-  // Mezcla relacionados primero, luego otros
-  const productosCarrusel = [...relacionados, ...otros].slice(0, 8);
-
-  // Divide en slides de 4 productos cada uno
+  // Divide en slides de 4 productos cada uno (puedes cambiar 4 por otro número si quieres más o menos por slide)
+  const SLIDE_SIZE = 4;
   const slides = [];
-  for (let i = 0; i < productosCarrusel.length; i += 4) {
-    slides.push(productosCarrusel.slice(i, i + 4));
+  for (let i = 0; i < productosCarrusel.length; i += SLIDE_SIZE) {
+    slides.push(productosCarrusel.slice(i, i + SLIDE_SIZE));
   }
 
   const inner = document.getElementById("relacionados-carousel-inner");
@@ -82,37 +72,33 @@ function renderRelacionados(productoActual) {
   inner.innerHTML = slides
     .map(
       (slide, idx) => `
-    <div class="carousel-item${idx === 0 ? " active" : ""}">
-      <div class="row">
-        ${slide
-          .map(
-            (p) => `
-          <div class="col-6 col-md-3">
-            <article class="card h-100">
-              <img class="card-img-top" src="${p.img}" alt="${p.nombre}">
-              <div class="card-body d-flex flex-column">
-                <h3 class="h6 mb-1">${p.nombre}</h3>
-                <span class="price mb-2">${p.precio.toLocaleString("es-CL", {
-                  style: "currency",
-                  currency: "CLP",
-                })}</span>
-                <div class="mt-auto d-flex gap-2">
-                  <a class="btn btn-outline-accent btn-sm" href="producto-detalle.html?id=${
-                    p.id
-                  }">Ver</a>
-                  <button class="btn btn-accent btn-sm" data-add="${
-                    p.id
-                  }">Añadir</button>
-                </div>
-              </div>
-            </article>
+  <div class="carousel-item${idx === 0 ? " active" : ""}">
+    ${slide
+      .map(
+        (p) => `
+        <article class="card h-100">
+          <img class="card-img-top" src="${p.img}" alt="${p.nombre}">
+          <div class="card-body d-flex flex-column">
+            <h3 class="h6 mb-1">${p.nombre}</h3>
+            <span class="price mb-2">${p.precio.toLocaleString("es-CL", {
+              style: "currency",
+              currency: "CLP",
+            })}</span>
+            <div class="mt-auto d-flex gap-2">
+              <a class="btn btn-outline-accent btn-sm" href="producto-detalle.html?id=${
+                p.id
+              }">Ver</a>
+              <button class="btn btn-accent btn-sm" data-add="${
+                p.id
+              }">Añadir</button>
+            </div>
           </div>
-        `
-          )
-          .join("")}
-      </div>
-    </div>
-  `
+        </article>
+      `
+      )
+      .join("")}
+  </div>
+`
     )
     .join("");
 }
