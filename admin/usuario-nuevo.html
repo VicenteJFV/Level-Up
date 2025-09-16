@@ -33,24 +33,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <aside class="col-12 col-md-3 col-lg-2 admin-sidebar p-0">
-                <div class="d-flex flex-column p-3 gap-2">
-                    <a href="/public/index.html" class="btn btn-outline-accent mb-3 w-100" style="font-weight:bold"><span class="me-2">🏠</span>Ir a Home</a>
-                    <a href="index.html" class="mb-3 text-decoration-none text-white h4 brand-title">Level-Up Admin</a>
-                    <nav class="nav flex-column gap-2">
-                        <div class="sidebar-section-title text-secondary small mb-1 mt-1">Dashboard</div>
-                        <a class="nav-link" href="index.html"><span class="me-2">🏠</span>Dashboard</a>
-                        <div class="sidebar-section-title text-secondary small mb-1 mt-3">GESTIÓN</div>
-                        <a class="nav-link" href="productos-list.html"><span class="me-2">📦</span>Productos</a>
-                        <a class="nav-link active" href="usuarios-list.html"><span class="me-2">👥</span>Usuarios</a>
-                        <a class="nav-link" href="pedidos-list.html"><span class="me-2">🛒</span>Pedidos</a>
-                        <div class="sidebar-section-title text-secondary small mb-1 mt-3">CONFIGURACIÓN</div>
-                        <a class="nav-link" href="configuracion.html"><span class="me-2">⚙️</span>Configuración</a>
-                        <hr class="my-3 border-secondary opacity-50" />
-                        <button class="btn btn-outline-danger w-100" id="btnAdminLogout"><span class="me-2">⎋</span>Cerrar Sesión</button>
-                    </nav>
-                </div>
-            </aside>
+            <div id="adminSidebarContainer" class="col-12 col-md-3 col-lg-2 p-0"></div>
             <main class="col admin-content p-4">
                 <h1 class="section-title mb-4">Nuevo Usuario</h1>
                 <div class="card bg-black border-accent p-4 mb-4">
@@ -118,6 +101,8 @@
         </div>
     </div>
     <script src="../public/assets/js/app/auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="admin-sidebar-loader.js"></script>
     <script src="../public/assets/js/app/regiones-comunes.js"></script>
     <script>
     requireRole(['admin']);

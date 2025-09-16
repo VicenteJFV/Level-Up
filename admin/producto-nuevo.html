@@ -52,12 +52,7 @@
                 <div class="d-flex flex-column p-3 gap-2">
                     <a href="index.html" class="mb-3 text-decoration-none text-white h4 brand-title">Level-Up Admin</a>
                     <nav class="nav flex-column gap-1">
-                        <a class="nav-link" href="index.html">Dashboard</a>
-                        <a class="nav-link active" href="productos-list.html">Productos</a>
-                        <a class="nav-link" href="usuarios-list.html">Usuarios</a>
-                        <a class="nav-link" href="pedidos-list.html">Pedidos</a>
-                        <a class="nav-link" href="configuracion.html">Configuración</a>
-                        <button class="btn btn-outline-danger mt-3" id="btnAdminLogout">Cerrar Sesión</button>
+                <div id="adminSidebarContainer" class="col-12 col-md-3 col-lg-2 p-0"></div>
                     </nav>
                     <div class="mt-auto small text-secondary">Admin</div>
                 </div>
@@ -118,6 +113,8 @@
         </div>
     </div>
     <script src="../public/assets/js/app/auth.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="admin-sidebar-loader.js"></script>
     <script>
     requireRole(['admin']);
     document.getElementById('btnAdminLogout').onclick = function() { logout(); };
