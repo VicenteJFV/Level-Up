@@ -1,0 +1,36 @@
+@startsalt mockup-productos
+title Mockup - Catalogo de Productos (productos.html)
+
+{
+  {* **LEVEL-UP GAMER** | ... | [**Productos**] | ... | [Carrito (2)] }
+  ==
+  { . | **Catalogo Gaming** | . }
+  ==
+  {/ 
+    **Filtros:** [Categoria ^] | [Precio: Min - Max] | [Ordenar ^] | [Aplicar] [Limpiar]
+  }
+  ==
+  {+
+    **Grid de Productos**
+    
+    {
+      [Imagen
+       **PlayStation 5**
+       Consolas
+       **$549.990**
+       [Ver] [Añadir]]
+    }
+    |
+    {
+      [Imagen
+       **PC ASUS ROG**
+       Hardware
+       **$1.299.990**
+       [Ver] [Añadir]]
+    }
+  }
+  ==
+  { [Anterior] | **Mostrando 2 de 40 productos** | [Siguiente] }
+}
+
+@endsalt

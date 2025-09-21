@@ -1,0 +1,232 @@
+@startsalt mockup-login-registro
+title Mockup - Login y Registro (login.html / registro.html)
+
+{
+  {* **LEVEL-UP GAMER** | [Home] | [Productos] | [Blogs] | [Nosotros] | [Contacto] | [Login] | [Registro] | [Carrito (0)] }
+  ==
+  { . | **Iniciar Sesion** | . }
+  ==
+  { 
+    . 
+    | 
+    { 
+      **Ingresar a tu cuenta**
+      
+      **Correo electronico:**
+      "usuario@ejemplo.com                    "
+      
+      **Contrasena:**
+      "••••••••••••••••                       "
+      
+      [] Recordar mi sesion
+      
+      [**INICIAR SESION**]
+      
+      --
+      
+      [¿Olvidaste tu contrasena?]
+      
+      **O ingresa con:**
+      [Google] [Facebook] [Apple]
+    } 
+    | 
+    .
+  }
+  ==
+  { . | **Crear Cuenta Nueva** | . }
+  ==
+  { 
+    . 
+    | 
+    {
+      **Registrate en Level-Up**
+      
+      **Nombre completo:**
+      "Juan Perez                             "
+      
+      **Correo electronico:**
+      "juan@ejemplo.com                       "
+      
+      **Contrasena:**
+      "••••••••••••••••                       "
+      
+      **Confirmar contrasena:**
+      "••••••••••••••••                       "
+      
+      **Telefono:**
+      "+56 9 1234 5678                        "
+      
+      **Fecha nacimiento:**
+      [15] / [03] / [1990]
+      
+      [] Acepto los [Terminos y Condiciones]
+      [] Quiero recibir ofertas por email
+      
+      [**CREAR CUENTA**]
+      
+      --
+      
+      **O registrate con:**
+      [Google] [Facebook] [Apple]
+    } 
+    | 
+    .
+  }
+}
+
+@endsalt
+      
+      **Contraseña:**
+      "••••••••••••••••••••••••••••••••••••••••"
+      
+      [] Recordar mi sesión
+      
+      [🚀 **Ingresar**] | [👤 **Crear cuenta**]
+      
+      [🔗 ¿Olvidaste tu contraseña?]
+      
+      --
+      
+      **O inicia sesión con:**
+      [f Facebook] [G Google] [# GitHub]
+    } 
+    | 
+    . 
+  }
+}
+
+==
+
+{
+  {* **LEVEL-UP GAMER** 🎮 | Home | Productos | Blogs | Nosotros | Contacto | [Login] | [**Registro**] }
+  ==
+  { . | **Crear Nueva Cuenta** | . }
+  ==
+  {
+    .
+    |
+    {
+      **👤 Únete a Level-Up Gamer**
+      
+      **Datos Personales:**
+      
+      **Nombre completo:**
+      "Juan Pérez González                     "
+      
+      **Correo electrónico:**
+      "juan.perez@gmail.com                    "
+      
+      **Teléfono:**
+      "+56 9 1234 5678                         "
+      
+      --
+      
+      **Seguridad:**
+      
+      **Contraseña:** (4-10 caracteres)
+      "••••••••••••••••••••••••••••••••••••••••"
+      
+      **Confirmar contraseña:**
+      "••••••••••••••••••••••••••••••••••••••••"
+      
+      --
+      
+      **Dirección de Envío:**
+      
+      **Dirección completa:**
+      "Av. Providencia 1234, Depto 56         "
+      "Providencia                             "
+      
+      **Región:** [Región Metropolitana      ^]
+      **Comuna:** [Providencia               ^]
+      
+      --
+      
+      [] Acepto los [Términos y Condiciones]
+      [] Deseo recibir ofertas y novedades por email
+      
+      [🎮 **Crear mi cuenta**] | [🔙 **Ya tengo cuenta**]
+    }
+    |
+    .
+  }
+}
+
+==
+
+{ . | **Validación de Formularios** | . }
+
+{+
+  **Estados de Validación en Tiempo Real:**
+  
+  {
+    **✅ Campos Válidos:**
+    ✅ Correo: formato correcto
+    ✅ Contraseña: 8 caracteres
+    ✅ Teléfono: formato chileno
+  }
+  |
+  {
+    **❌ Errores de Validación:**
+    ❌ Email ya registrado
+    ❌ Contraseñas no coinciden  
+    ❌ Teléfono inválido
+    ❌ Términos no aceptados
+  }
+}
+
+==
+
+{ . | **Flujo Post-Autenticación** | . }
+
+{+
+  **Redirecciones según Rol:**
+  
+  {
+    **👤 Usuario Cliente:**
+    Login exitoso → index.html
+    Acceso a: compras, carrito,
+    historial, perfil
+  }
+  |
+  {
+    **🛡️ Usuario Admin:**
+    Login exitoso → admin/index.html
+    Acceso a: dashboard, productos,
+    usuarios, pedidos, configuración
+  }
+}
+
+note right
+  **Archivos JavaScript:**
+  - auth.js (gestión autenticación)
+  - auth-validator.js (validación login)
+  - registro-validator.js (validación registro)
+  - regiones-comunes.js (regiones Chile)
+end note
+
+note left
+  **Funcionalidades de seguridad:**
+  - Validación en tiempo real
+  - Verificación de email único
+  - Contraseñas seguras (4-10 chars)
+  - Términos y condiciones
+  - Roles de usuario (cliente/admin)
+  - Sesión persistente en localStorage
+end note
+
+note bottom
+  **LocalStorage structure:**
+  lug_auth_v1: {
+    email: "user@example.com",
+    role: "cliente" | "admin"
+  }
+  
+  **Validaciones:**
+  - Email único (simulado)
+  - Formato email válido
+  - Contraseñas coincidentes
+  - Términos aceptados
+end note
+
+@endsalt

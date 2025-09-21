@@ -1,0 +1,63 @@
+@startsalt mockup-mobile-responsive
+title Mockup - Index Mobile (Mobile-First)
+
+{+
+  **LEVEL-UP GAMER**
+  
+  { [=] | . | [Carrito (2)] }
+  
+  ==
+  
+  **Hero Mobile**
+  
+  [======== Imagen Hero ========]
+  
+  **Sube de nivel tu SETUP**
+  Consolas y PCs gamers con envio nacional
+  
+  [Explorar Productos]
+  
+  ==
+  
+  **Productos Destacados**
+  
+  {
+    [Imagen]
+    **PlayStation 5**
+    $549.990
+    [Ver] [Comprar]
+  }
+  --
+  {
+    [Imagen] 
+    **PC ASUS ROG**
+    $1.299.990
+    [Ver] [Comprar]
+  }
+  --
+  {
+    [Imagen]
+    **HyperX Cloud**
+    $79.990  
+    [Ver] [Comprar]
+  }
+  
+  [Ver todos los productos]
+  
+  ==
+  
+  **Menu Navegacion**
+  
+  [Productos] [Blogs] [Nosotros] [Contacto]
+  
+  [Login / Registro]
+  
+  ==
+  
+  **Footer Mobile**
+  
+  Level-Up Gamer 2024
+  "Level Up: Donde cada jugador encuentra su proximo desafio"
+}
+
+@endsalt

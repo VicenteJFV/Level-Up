@@ -1,0 +1,50 @@
+@startsalt mockup-producto-detalle
+title Mockup - Detalle de Producto (producto-detalle.html)
+
+{
+  {* **LEVEL-UP GAMER** | ... | [**Productos**] | ... | [Carrito (1)] }
+  ==
+  {/ [Inicio] > [Productos] > **PC ASUS ROG Strix** }
+  ==
+  {+
+    **Detalle del Producto**
+    
+    {
+      {^
+        [Imagen Principal]
+        **PC ASUS ROG STRIX**
+        
+        [Img1] [Img2] [Img3] [Img4]
+      }
+      |
+      {
+        **PC Gamer ASUS ROG Strix**
+        *Computadores Gamers*
+        
+        **$1.299.990** | $1.499.990 | **13% OFF**
+        
+        **Stock:** Disponible (3 unidades)
+        **Envio:** GRATIS
+        
+        --
+        
+        **Especificaciones:**
+        - Procesador: AMD Ryzen 7
+        - GPU: RTX 4070
+        - RAM: 32GB
+        - SSD: 1TB NVMe
+        
+        --
+        
+        **Cantidad:** [1 ^] | [AÑADIR AL CARRITO]
+      }
+    }
+  }
+  ==
+  { . | **Productos Relacionados** | . }
+  {
+    { [Monitor Gaming $299.990] } | { [Mouse ROG $79.990] }
+  }
+}
+
+@endsalt

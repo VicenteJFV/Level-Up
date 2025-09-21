@@ -1,0 +1,443 @@
+@startuml flujo-usuario-general
+title Diagrama de Flujo - Navegación General del Usuario
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+skinparam activityFontStyle normal
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+skinparam activityDiamondFontColor #2c3e50
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+skinparam noteBackgroundColor #eaf2f8
+skinparam noteBorderColor #2980b9
+skinparam noteFontColor #2c3e50
+
+start
+:Usuario accede a Level-Up Gamer;
+:Página de inicio (index.html);
+
+if (¿Usuario autenticado?) then (No)
+    :Mostrar opciones de registro/login;
+    if (¿Desea registrarse/login?) then (Sí)
+        :Ir a login.html o registro.html;
+        :Completar formulario;
+        if (¿Credenciales válidas?) then (Sí)
+            :Guardar sesión en localStorage;
+        else (No)
+            :Mostrar error de validación;
+            stop
+        endif
+    endif
+endif
+
+:Explorar sitio web;
+
+if (¿Qué acción desea realizar?) then (Ver productos)
+    :Ir a productos.html;
+    :Mostrar catálogo de productos;
+    if (¿Ver detalle de producto?) then (Sí)
+        :Ir a producto-detalle.html;
+        :Mostrar información completa;
+        if (¿Agregar al carrito?) then (Sí)
+            :Ejecutar addToCart();
+            :Actualizar localStorage;
+            :Mostrar confirmación;
+        endif
+    endif
+elseif (Ver blogs) then
+    :Ir a blogs.html;
+    :Mostrar artículos y noticias;
+elseif (Contactar) then
+    :Ir a contact.html;
+    :Completar formulario de contacto;
+elseif (Conocer empresa) then
+    :Ir a nosotros.html;
+    :Mostrar información corporativa;
+elseif (Finalizar compra) then
+    if (¿Carrito tiene productos?) then (Sí)
+        :Ir a compra.html;
+        :Revisar productos en carrito;
+        :Completar datos de envío;
+        :Procesar pago;
+        :Confirmación de compra;
+    else (No)
+        :Mensaje "Carrito vacío";
+    endif
+endif
+
+stop
+@enduml
+
+@startuml flujo-admin
+title Diagrama de Flujo - Panel de Administración
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+skinparam activityFontStyle normal
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+skinparam activityDiamondFontColor #2c3e50
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+skinparam noteBackgroundColor #eaf2f8
+skinparam noteBorderColor #2980b9
+skinparam noteFontColor #2c3e50
+
+start
+:Administrador accede al panel;
+:Verificar autenticación (auth.js);
+
+if (¿Rol = 'admin'?) then (No)
+    :Mostrar "Acceso denegado";
+    :Redirigir a login.html;
+    stop
+else (Sí)
+    :Cargar admin/index.html;
+    :Mostrar dashboard principal;
+endif
+
+if (¿Qué gestionar?) then (Productos)
+    :Ir a productos-list.html;
+    :Mostrar tabla de productos;
+    if (¿Acción deseada?) then (Nuevo)
+        :Ir a producto-nuevo.html;
+        :Completar formulario;
+        :Validar datos;
+        :Guardar producto;
+    elseif (Editar) then
+        :Cargar datos del producto;
+        :Mostrar formulario de edición;
+        :Actualizar información;
+    elseif (Eliminar) then
+        :Confirmar eliminación;
+        :Remover producto;
+    endif
+elseif (Usuarios) then
+    :Ir a usuarios-list.html;
+    :Mostrar tabla de usuarios;
+    if (¿Acción deseada?) then (Nuevo)
+        :Ir a usuario-nuevo.html;
+        :Crear cuenta de usuario;
+    elseif (Editar) then
+        :Ir a usuario-editar.html;
+        :Modificar datos del usuario;
+    endif
+elseif (Pedidos) then
+    :Ir a pedidos-list.html;
+    :Mostrar lista de pedidos;
+    if (¿Ver detalle?) then (Sí)
+        :Ir a pedido-detalle-admin.html;
+        :Mostrar información completa;
+        if (¿Editar estado?) then (Sí)
+            :Ir a pedido-editar-admin.html;
+            :Actualizar estado del pedido;
+        endif
+    endif
+elseif (Configuración) then
+    :Ir a configuracion.html;
+    :Ajustar parámetros del sistema;
+endif
+
+stop
+@enduml
+
+@startuml flujo-carrito-compra
+title Diagrama de Flujo - Proceso de Carrito y Compra
+skinparam backgroundColor #1a1a1a
+skinparam defaultTextColor white
+skinparam activityBackgroundColor #2d2d2d
+skinparam activityBorderColor #39ff14
+
+start
+:Usuario selecciona producto;
+:Hacer clic en "Añadir al carrito";
+:Ejecutar addToCart(producto);
+
+:Verificar si producto ya existe en carrito;
+if (¿Producto existe?) then (Sí)
+    :Incrementar cantidad += 1;
+else (No)
+    :Agregar nuevo item al carrito;
+endif
+
+:Guardar carrito en localStorage;
+:Actualizar vista del carrito floating;
+:Mostrar confirmación visual;
+
+if (¿Usuario desea continuar comprando?) then (Sí)
+    :Continuar navegando;
+    :Agregar más productos (loop);
+else (No)
+    :Ir al carrito para revisar;
+endif
+
+:Revisar productos en carrito;
+if (¿Modificar carrito?) then (Sí)
+    if (¿Qué acción?) then (Eliminar item)
+        :removeFromCart(id);
+        :Actualizar localStorage;
+        :Refrescar vista;
+    elseif (Vaciar carrito) then
+        :Limpiar localStorage;
+        :Vaciar vista del carrito;
+    elseif (Cambiar cantidad) then
+        :Actualizar qty del producto;
+        :Recalcular totales;
+    endif
+endif
+
+if (¿Proceder al checkout?) then (Sí)
+    :Ir a compra.html;
+    :Validar que hay productos;
+    :Mostrar resumen de compra;
+    
+    :Completar datos del cliente;
+    note right: Nombre, dirección, teléfono, etc.
+    
+    :Seleccionar método de pago;
+    :Ingresar datos de pago;
+    
+    :Validar formulario de compra;
+    if (¿Datos válidos?) then (No)
+        :Mostrar errores de validación;
+        :Permitir corrección;
+    else (Sí)
+        :Procesar pago (simulado);
+        :Generar orden de compra;
+        :Limpiar carrito;
+        :Mostrar confirmación;
+        :Redirigir a página de éxito;
+    endif
+else (No)
+    :Mantener productos en carrito;
+    :Continuar navegando;
+endif
+
+stop
+@enduml
+
+@startuml flujo-autenticacion
+title Diagrama de Flujo - Sistema de Autenticación
+skinparam backgroundColor #1a1a1a
+skinparam defaultTextColor white
+skinparam activityBackgroundColor #2d2d2d
+skinparam activityBorderColor #39ff14
+
+start
+:Usuario accede al sistema;
+
+if (¿Tiene cuenta?) then (No)
+    :Ir a registro.html;
+    :Completar formulario de registro;
+    note right
+        - Nombre completo
+        - Email
+        - Contraseña
+        - Confirmación contraseña
+        - Teléfono
+        - Dirección
+    end note
+    
+    :Validar datos con registro-validator.js;
+    if (¿Datos válidos?) then (No)
+        :Mostrar errores;
+        :Permitir corrección;
+    else (Sí)
+        :Crear cuenta (simulado);
+        :login(email, "cliente");
+        :Guardar sesión en localStorage;
+        :Redirigir a index.html;
+    endif
+else (Sí)
+    :Ir a login.html;
+    :Ingresar credenciales;
+    note right
+        - Email
+        - Contraseña
+    end note
+    
+    :Validar con auth-validator.js;
+    if (¿Credenciales válidas?) then (No)
+        :Mostrar error "Credenciales inválidas";
+        :Permitir reintento;
+    else (Sí)
+        :Determinar rol del usuario;
+        if (¿Es administrador?) then (Sí)
+            :login(email, "admin");
+            :Redirigir a admin/index.html;
+        else (No)
+            :login(email, "cliente");
+            :Redirigir a public/index.html;
+        endif
+        :Guardar sesión en localStorage;
+    endif
+endif
+
+:Sistema verifica sesión con getAuth();
+if (¿Sesión activa?) then (Sí)
+    :Permitir acceso completo;
+    :Mostrar opciones de usuario logueado;
+    if (¿Usuario desea cerrar sesión?) then (Sí)
+        :Ejecutar logout();
+        :clearAuth();
+        :Redirigir a login.html;
+    endif
+else (No)
+    :Acceso limitado como invitado;
+    :Mostrar opciones de login/registro;
+endif
+
+stop
+@enduml
+
+@startuml arquitectura-sistema
+title Diagrama de Arquitectura - Level-Up Gamer
+skinparam backgroundColor #1a1a1a
+skinparam defaultTextColor white
+skinparam packageBackgroundColor #2d2d2d
+skinparam packageBorderColor #39ff14
+skinparam componentBackgroundColor #333333
+skinparam componentBorderColor #1e90ff
+
+package "Frontend (Client-Side)" {
+    package "Public Site" {
+        [index.html] as index
+        [productos.html] as productos
+        [blogs.html] as blogs
+        [login.html] as login
+        [registro.html] as registro
+        [compra.html] as compra
+        [contact.html] as contact
+        [nosotros.html] as nosotros
+        [producto-detalle.html] as detalle
+    }
+    
+    package "Admin Panel" {
+        [admin/index.html] as admin_dash
+        [productos-list.html] as admin_prod
+        [usuarios-list.html] as admin_users
+        [pedidos-list.html] as admin_orders
+        [configuracion.html] as admin_config
+    }
+    
+    package "JavaScript Modules" {
+        [productos.js] as js_productos
+        [carrito.js] as js_carrito
+        [auth.js] as js_auth
+        [pago.js] as js_pago
+        [ui.js] as js_ui
+        [partials-loader.js] as js_partials
+    }
+    
+    package "Validators" {
+        [auth-validator.js] as val_auth
+        [contacto-validator.js] as val_contact
+        [registro-validator.js] as val_registro
+    }
+    
+    package "Assets" {
+        [styles.css] as css
+        [bootstrap.min.css] as bootstrap
+        [Imágenes] as images
+    }
+    
+    package "Partials" {
+        [header.html] as header
+        [footer.html] as footer
+        [sidebar.html] as sidebar
+    }
+}
+
+package "Client Storage" {
+    database "localStorage" {
+        [lug_cart_v1] as cart_storage
+        [lug_auth_v1] as auth_storage
+    }
+}
+
+package "External Dependencies" {
+    [Bootstrap 5.3.3] as bootstrap_cdn
+    [Google Fonts] as fonts
+    [jQuery] as jquery
+}
+
+' Connections
+index --> js_ui
+index --> js_partials
+index --> header
+index --> footer
+
+productos --> js_productos
+productos --> js_carrito
+productos --> js_auth
+
+login --> js_auth
+login --> val_auth
+registro --> val_registro
+
+compra --> js_pago
+compra --> js_carrito
+
+admin_dash --> js_auth
+admin_prod --> js_productos
+admin_users --> js_auth
+
+js_carrito --> cart_storage
+js_auth --> auth_storage
+
+css --> bootstrap
+index --> bootstrap_cdn
+index --> fonts
+index --> jquery
+
+js_partials --> header
+js_partials --> footer
+admin_dash --> sidebar
+
+note right of js_productos
+    Contiene array PRODUCTOS
+    con 10 items hardcodeados
+end note
+
+note right of cart_storage
+    Persistencia del carrito
+    en navegador del cliente
+end note
+
+note right of auth_storage
+    Gestión de sesiones
+    y roles de usuario
+end note
+
+@enduml

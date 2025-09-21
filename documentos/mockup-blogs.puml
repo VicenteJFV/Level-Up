@@ -1,0 +1,29 @@
+@startsalt mockup-blogs
+title Mockup - Pagina de Blogs (blogs.html)
+
+{
+  {* **LEVEL-UP GAMER** | ... | [**Blogs**] | ... }
+  ==
+  { . | **Novedades Gaming** | . }
+  ==
+  {/ 
+    **Filtros:** [Categoria ^] | [Fecha ^] | [Autor ^] | [Buscar...]
+  }
+  ==
+  {+
+    **Articulos del Blog**
+    
+    {
+      [Imagen
+       **Las mejores GPUs 2025**
+       *Por Level-Up Team - Hace 2 dias*
+       Descubre las tarjetas graficas mas potentes 
+       del mercado actual para gaming 4K...
+       [Leer articulo completo]]
+    }
+  }
+  ==
+  { [Pagina anterior] | **Mostrando 1 de 15 articulos** | [Siguiente pagina] }
+}
+
+@endsalt
