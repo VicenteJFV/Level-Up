@@ -1,0 +1,122 @@
+@startuml arquitectura-sistema
+title Diagrama de Arquitectura - Level-Up Gamer E-commerce
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam packageBackgroundColor #f8f9fa
+skinparam packageBorderColor #3498db
+skinparam packageFontStyle bold
+skinparam packageFontColor #2c3e50
+
+skinparam componentBackgroundColor #ecf0f1
+skinparam componentBorderColor #2980b9
+skinparam componentFontColor #2c3e50
+
+skinparam databaseBackgroundColor #e8f8f5
+skinparam databaseBorderColor #27ae60
+skinparam databaseFontColor #2c3e50
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+' === LAYOUT HORIZONTAL ===
+left to right direction
+
+' === FRONTEND LAYER ===
+package "Frontend SPA" {
+    package "Public Pages" {
+        [Index] as index
+        [Productos] as productos
+        [Login/Registro] as auth_pages
+        [Compra] as compra
+        [Blog] as blogs
+    }
+    
+    package "Admin Panel" {
+        [Dashboard] as admin_dash
+        [Gestion Productos] as admin_prod
+        [Gestion Usuarios] as admin_users
+    }
+}
+
+' === LOGIC LAYER ===
+package "JavaScript Core" {
+    [productos.js] as js_productos
+    [carrito.js] as js_carrito
+    [auth.js] as js_auth
+    [pago.js] as js_pago
+    [ui.js] as js_ui
+    [validators/] as validators
+}
+
+' === STORAGE LAYER ===
+package "Client Storage" {
+    database "localStorage" {
+        [lug_cart_v1] as cart_data
+        [lug_auth_v1] as auth_data
+    }
+}
+
+' === ASSETS LAYER ===
+package "Assets" {
+    [CSS/Bootstrap] as styles
+    [Images] as images
+    [External CDN] as cdn
+}
+
+' === CONNECTIONS SIMPLIFICADAS ===
+
+' Frontend to JavaScript
+index --> js_ui
+productos --> js_productos
+productos --> js_carrito
+auth_pages --> js_auth
+compra --> js_pago
+blogs --> js_ui
+
+' Admin connections  
+admin_dash --> js_auth
+admin_prod --> js_productos
+admin_users --> js_auth
+
+' JavaScript to Storage
+js_carrito --> cart_data
+js_auth --> auth_data
+
+' Assets connections
+index --> styles
+productos --> styles
+admin_dash --> styles
+
+js_productos --> images
+js_ui --> images
+styles --> cdn
+
+note top of "Frontend SPA"
+**Level-Up Gamer E-commerce**
+SPA con HTML5 + JavaScript ES6+
+Panel admin con roles diferenciados
+end note
+
+note bottom of "Client Storage"
+**Persistencia Local:**
+- Carrito: lug_cart_v1
+- Auth: lug_auth_v1  
+- Session: navegacion
+end note
+
+note right of "JavaScript Core"
+**Modulos Principales:**
+- productos.js (catalogo)
+- carrito.js (compras) 
+- auth.js (usuarios)
+- pago.js (checkout)
+- ui.js (interfaz)
+end note
+
+@enduml

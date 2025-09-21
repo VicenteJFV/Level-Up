@@ -1,0 +1,66 @@
+@startsalt mockup-panel-admin
+title Mockup - Panel de Administracion (admin/)
+
+{+
+  **Dashboard Administrativo**
+  
+  {/ 
+    **ADMIN PANEL**
+    --
+    [Dashboard]
+    --
+    [Productos]
+    [Usuarios] 
+    [Pedidos]
+    --
+    [Configuracion]
+    --
+    [Cerrar Sesion]
+  }
+  |
+  {+
+    { . | **Dashboard Principal** | . }
+    
+    {
+      **Estadisticas**
+      
+      Ventas del dia: $2.450.000
+      Pedidos activos: 45
+      Usuarios: 1.234
+      Productos: 89/95
+      
+      [Ver reportes]
+    }
+    |
+    {
+      **Productos Top**
+      
+      1. PlayStation 5 (12 ventas)
+      2. PC ASUS ROG (8 ventas)
+      3. HyperX Cloud (15 ventas)
+      
+      [Gestionar productos]
+    }
+    --
+    {
+      **Pedidos Recientes**
+      
+      Pedido #1001 - Juan P. - $549.990
+      Pedido #1002 - Maria G. - $79.990
+      Pedido #1003 - Carlos M. - $1.299.990
+      
+      [Ver todos los pedidos]
+    }
+    |
+    {
+      **Acciones Rapidas**
+      
+      [Nuevo Producto]
+      [Nuevo Usuario]
+      [Ver Reportes]
+      [Configuracion]
+    }
+  }
+}
+
+@endsalt

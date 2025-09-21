@@ -1,0 +1,60 @@
+@startuml flujo-usuario-general
+title Diagrama de Flujo - Navegación General del Usuario
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+start
+:Acceder a Level-Up Gamer (index.html);
+
+if (¿Usuario autenticado?) then (No)
+    :Login/Registro opcional;
+else (Sí)
+    :Sesión activa;
+endif
+
+:Navegación principal;
+
+if (¿Qué acción?) then (Ver productos)
+    :Ir a catálogo de productos;
+    :Ver detalle de producto;
+    if (¿Agregar al carrito?) then (Sí)
+        :Producto agregado al carrito;
+    endif
+    
+elseif (Comprar) then
+    if (¿Carrito con productos?) then (Sí)
+        :Ir a checkout;
+        :Completar datos de envío;
+        :Procesar pago;
+        :Mostrar confirmación de compra;
+    else (No)
+        :Mostrar mensaje "Carrito vacío";
+    endif
+    
+else (Otros)
+    :Explorar contenido adicional;
+    :Leer blog y noticias gaming;
+    :Ver información de contacto/nosotros;
+endif
+
+stop
+
+@enduml

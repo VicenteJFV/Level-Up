@@ -1,0 +1,68 @@
+@startuml flujo-carrito-compra
+title Diagrama de Flujo - Sistema de Carrito de Compras
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+start
+:Usuario selecciona producto;
+:Hacer clic en "Añadir al carrito";
+
+if (¿Producto ya existe?) then (Sí)
+    :Incrementar cantidad;
+else (No)
+    :Agregar nuevo producto;
+endif
+
+:Guardar carrito en localStorage;
+:Actualizar indicador visual del carrito;
+
+:Usuario revisa carrito de compras;
+:Modificar cantidades si es necesario;
+
+if (¿Proceder al checkout?) then (Sí)
+    if (¿Carrito vacío?) then (Sí)
+        :Mostrar "Carrito vacío";
+        stop
+    endif
+    
+    :Ir a página de compra;
+    :Completar datos personales;
+    :Seleccionar método de pago;
+    :Validar información ingresada;
+    
+    if (¿Datos válidos?) then (Sí)
+        :Procesar pago (simulado);
+        if (¿Pago exitoso?) then (Sí)
+            :Generar número de orden;
+            :Limpiar carrito;
+            :Mostrar confirmación de compra;
+        else (No)
+            :Mostrar error de pago;
+        endif
+    else (No)
+        :Mostrar errores de validación;
+    endif
+endif
+
+:Compra completada exitosamente;
+stop
+
+@enduml

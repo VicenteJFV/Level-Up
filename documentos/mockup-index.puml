@@ -1,0 +1,38 @@
+@startsalt mockup-index
+title Mockup - Pagina Principal (index.html)
+
+{
+  {* **LEVEL-UP GAMER** | [Home] | [Productos] | [Blogs] | [Nosotros] | [Contacto] | [Login] | [Carrito (0)] }
+  ==
+  {+
+    { . | **Hero Section** | . }
+    {
+      { 
+        **Sube de nivel tu SETUP**
+        Consolas, perifericos y PCs gamers
+        [Explorar productos] [Ver novedades]
+      }
+      |
+      {^ [Hero Image Gaming] }
+    }
+  }
+  ==
+  { . | **Productos Destacados** | . }
+  {
+    { [PS5 $549.990] } | { [PC Gamer $1.299.990] } | { [Silla Gaming $349.990] } | { [Mouse RGB $89.990] }
+  }
+  ==
+  { . | **Blog Gaming** | . }
+  {
+    { [Guia Setup Gamer] } | { [Reviews Hardware] } | { [Juegos Indie Top] }
+  }
+  ==
+  { . | **Categorias** | . }
+  {
+    { [Consolas] | [PCs] | [Sillas] | [Audio] | [Perifericos] }
+  }
+  ==
+  {* **Level-Up Gamer 2025** | [Facebook] [Instagram] [Discord] | [Terminos] [Privacidad] }
+}
+
+@endsalt

@@ -1,0 +1,69 @@
+@startuml flujo-panel-admin
+title Diagrama de Flujo - Panel de Administración
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+start
+:Administrador accede al panel;
+:Verificar autenticación;
+
+if (¿Usuario logueado con rol admin?) then (No)
+    :Mostrar "Acceso denegado";
+    :Redirigir a login;
+    stop
+endif
+
+:Cargar dashboard principal;
+:Mostrar estadísticas del sistema;
+
+if (¿Qué gestionar?) then (Productos)
+    :Ir a gestión de productos;
+    :Ver/Crear/Editar/Eliminar productos;
+    :Actualizar catálogo;
+    
+elseif (Usuarios) then
+    :Ir a gestión de usuarios;
+    :Administrar cuentas y roles;
+    :Crear nuevos usuarios;
+    
+elseif (Pedidos) then
+    :Ir a gestión de pedidos;
+    :Ver estado de órdenes;
+    :Actualizar envíos;
+    
+else (Configuración)
+    :Acceder a configuración del sistema;
+    :Modificar parámetros generales;
+endif
+
+:Realizar operaciones administrativas;
+:Guardar cambios en sistema;
+
+if (¿Cerrar sesión?) then (Sí)
+    :Logout del panel admin;
+    :Redirigir a login;
+    stop
+endif
+
+:Continuar administrando el sistema;
+stop
+
+@enduml

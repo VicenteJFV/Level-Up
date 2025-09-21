@@ -1,0 +1,59 @@
+@startsalt mockup-proceso-compra
+title Mockup - Proceso de Compra (compra.html)
+
+{
+  {* **LEVEL-UP GAMER** | ... | [**Checkout**] | ... | [Carrito (2)] }
+  ==
+  { . | **Finalizar Compra** | . }
+  ==
+  {/ **Progreso:** [Carrito] > [Datos] > [Pago] > [Confirmacion] }
+  ==
+  {+
+    {
+      **Resumen del Pedido**
+      
+      PlayStation 5 x1 - $549.990
+      PC ASUS ROG x1 - $1.299.990
+      
+      --
+      
+      Subtotal: $1.849.980
+      Envio: GRATIS
+      **Total: $1.849.980**
+    }
+    |
+    {
+      **Datos del Cliente**
+      
+      **Personal:**
+      Nombre: [Juan Perez]
+      Email: [juan@email.com]
+      Telefono: [+56 9 1234 5678]
+      
+      **Direccion:**
+      Direccion: [Av. Providencia 1234]
+      Region: [RM ^] Comuna: [Providencia ^]
+      
+      **Envio:**
+      () Estandar (2-5 dias) GRATIS
+      () Express (24-48 hrs) $9.990
+    }
+  }
+  ==
+  {+
+    **Metodo de Pago**
+    
+    () Tarjeta de Credito/Debito
+    () WebPay Plus
+    () Transferencia Bancaria
+    
+    **Datos de Pago:**
+    Numero: [1234 5678 9012 3456]
+    Vence: [12/26] CVV: [123]
+    Nombre: [JUAN PEREZ]
+    
+    [PROCESAR PAGO]
+  }
+}
+
+@endsalt

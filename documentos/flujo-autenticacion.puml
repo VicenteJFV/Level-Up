@@ -1,0 +1,68 @@
+@startuml flujo-autenticacion
+title Diagrama de Flujo - Sistema de Autenticación
+
+!theme plain
+skinparam backgroundColor white
+skinparam titleFontColor #2c3e50
+skinparam titleFontSize 16
+skinparam titleFontStyle bold
+
+skinparam defaultTextColor #2c3e50
+skinparam activityBackgroundColor #ecf0f1
+skinparam activityBorderColor #3498db
+skinparam activityBorderThickness 2
+skinparam activityFontColor #2c3e50
+
+skinparam activityStartColor #27ae60
+skinparam activityEndColor #e74c3c
+skinparam activityDiamondBackgroundColor #f8f9fa
+skinparam activityDiamondBorderColor #2980b9
+
+skinparam ArrowColor #34495e
+skinparam ArrowThickness 2
+
+start
+:Usuario accede al sistema;
+
+if (¿Tiene cuenta?) then (No)
+    :Ir a registro.html;
+    :Completar formulario de registro;
+    :Validar datos (email único, contraseñas);
+    if (¿Datos válidos?) then (Sí)
+        :Crear cuenta con rol "cliente";
+        :Guardar en localStorage;
+        :Redirigir a index.html;
+    else (No)
+        :Mostrar errores de validación;
+    endif
+    
+else (Sí)
+    :Ir a login.html;
+    :Ingresar email y contraseña;
+    :Validar credenciales;
+    if (¿Credenciales correctas?) then (Sí)
+        :Determinar rol de usuario;
+        :Guardar sesión en localStorage;
+        if (¿Es admin?) then (Sí)
+            :Redirigir a admin/index.html;
+        else (No)
+            :Redirigir a index.html;
+        endif
+    else (No)
+        :Mostrar error "Credenciales incorrectas";
+    endif
+endif
+
+:Usuario autenticado exitosamente;
+:Sesión activa en todas las páginas;
+
+if (¿Cerrar sesión?) then (Sí)
+    :Limpiar localStorage;
+    :Redirigir a login.html;
+    stop
+endif
+
+:Continuar navegando con permisos completos;
+stop
+
+@enduml
